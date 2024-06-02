@@ -109,7 +109,7 @@ class Pipeline implements Serializable {
             Constant.setNODE("Contus-Xcode9")
         }
         else {
-            Constant.setNODE("agent-label")
+            Constant.setNODE("agent1")
         }
     }
 }

@@ -22,15 +22,15 @@ public class Preparation extends AbstractStage {
 			def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
 			script.node("${Constant.NODE}") {
 
-						script.sh returnStdout: true, script:"echo ${script.env.SONAR_HOST}"
-				script.sh('#!/bin/sh -e\n' +"echo ${script.env.BRANCH_NAME}")
+			script.sh returnStdout: true, script:"echo ${script.env.SONAR_HOST}"
+			script.sh('#!/bin/sh -e\n' +"echo ${script.env.BRANCH_NAME}")
 
-				//Checkout code
-				script.checkout script.scm
-
-				// // Load build properties
-				// def buildProperties = new BuildProperties(script)
-				// buildProperties.readBuildProperties()
+			//Checkout code
+    		script.checkout script.scm
+            
+            // Load build properties
+			// def buildProperties = new BuildProperties(script)
+			// buildProperties.readBuildProperties()
 			}
 		}
 	}
