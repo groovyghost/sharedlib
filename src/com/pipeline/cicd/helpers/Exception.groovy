@@ -1,4 +1,4 @@
-package com.contus.cd.helpers
+package com.pipeline.cicd.helpers
 
 /**
  * Exception handling class.

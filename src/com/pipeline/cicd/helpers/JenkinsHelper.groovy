@@ -1,4 +1,4 @@
-package com.contus.cd.helpers
+package com.pipeline.cicd.helpers
 import jenkins.model.Jenkins
 import com.cloudbees.groovy.cps.NonCPS
 import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException

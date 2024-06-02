@@ -1,8 +1,8 @@
-package com.contus.cd.stages
+package com.pipeline.cicd.stages
 
-import com.contus.cd.Constant
-// import com.contus.cd.helpers.BuildProperties
-import com.contus.cd.helpers.JenkinsHelper
+import com.pipeline.cicd.Constant
+// import com.pipeline.cicd.helpers.BuildProperties
+import com.pipeline.cicd.helpers.JenkinsHelper
 
 /**
  * In this stage source code clone or checkout is done.

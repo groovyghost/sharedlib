@@ -1,4 +1,4 @@
-package com.contus.cd
+package com.pipeline.cicd
 
 class Constant implements Serializable {
 

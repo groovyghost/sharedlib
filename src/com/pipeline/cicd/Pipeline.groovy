@@ -1,9 +1,9 @@
-package com.contus.cd
+package com.pipeline.cicd
 
-import com.contus.cd.Constant
-import com.contus.cd.helpers.Exception
-import com.contus.cd.helpers.JenkinsHelper
-import com.contus.cd.stages.*
+import com.pipeline.cicd.Constant
+import com.pipeline.cicd.helpers.Exception
+import com.pipeline.cicd.helpers.JenkinsHelper
+import com.pipeline.cicd.stages.*
 import org.jenkinsci.plugins.workflow.cps.DSL
 
 /**
