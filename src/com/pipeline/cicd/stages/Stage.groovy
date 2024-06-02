@@ -1,4 +1,4 @@
-package com.contus.cd.stages
+package com.pipeline.cicd.stages
 
 interface Stage extends Serializable {
 
