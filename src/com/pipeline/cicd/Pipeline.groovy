@@ -6,12 +6,6 @@ import com.pipeline.cicd.helpers.JenkinsHelper
 import com.pipeline.cicd.stages.*
 import org.jenkinsci.plugins.workflow.cps.DSL
 
-/**
- * Pipeline for Jenkins2 Pipeline
- *
- * @author sathishkumar@contus.in
- * @version 1.0
- */
 class Pipeline implements Serializable {
 
     def script
@@ -34,20 +28,16 @@ class Pipeline implements Serializable {
 
     static class Builder implements Serializable {
 
-        // Stages of pipeline
         def stages = []
 
-        // Script object to execute the jenkins based scripts
         def script
 
         def approvalQAComment
 
         DSL steps
 
-        // {@link JenkinsHelper}
         JenkinsHelper jenkinsHelper
 
-        //Project repo branch name. Used to select stages to be executed which changes according to branch
         def PROJECT_REPO_BRANCH;
 
         Builder(def script, DSL steps) {
@@ -87,10 +77,8 @@ class Pipeline implements Serializable {
 
     void execute() {
 
-        // Choose the node suitable for branch before execution
         chooseNode()
 
-        // `stages.each { ... }` does not work, see https://issues.jenkins-ci.org/browse/JENKINS-26481
         for (Stage stage : stages) {
 
             try {
