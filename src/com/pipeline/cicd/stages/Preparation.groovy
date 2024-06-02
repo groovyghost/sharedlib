@@ -28,9 +28,9 @@ public class Preparation extends AbstractStage {
 				//Checkout code
 				script.checkout script.scm
 
-				// Load build properties
-				def buildProperties = new BuildProperties(script)
-				buildProperties.readBuildProperties()
+				// // Load build properties
+				// def buildProperties = new BuildProperties(script)
+				// buildProperties.readBuildProperties()
 			}
 		}
 	}
