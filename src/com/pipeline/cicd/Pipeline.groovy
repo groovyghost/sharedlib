@@ -18,8 +18,6 @@ class Pipeline implements Serializable {
 
     def stages = []
 
-
-
     DSL steps
 
     JenkinsHelper jenkinsHelper
