@@ -65,7 +65,7 @@ class Pipeline implements Serializable {
 
         def PipelineBuild() {
                 withPreparationStage()
-                withTestStage()
+                //withTestStage()
             return new Pipeline(this)
         }
 
