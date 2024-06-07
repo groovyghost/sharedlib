@@ -15,10 +15,10 @@ public class Test extends AbstractStage {
 		script.stage(stageName) {
 			script.node("${Constant.NODE}") {
 			def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
-			def scriptcontents = libraryResource "test.sh"    
+			def scriptcontents = libraryResource "test.sh"
   			writeFile file: "test.sh", text: scriptcontents 
-  			sh "chmod a+x ./test.sh"
-    		sh "bash test.sh ${script.env.BRANCH_NAME} ${script.env.BRANCH_NAME}"
+  			script.sh "chmod a+x ./test.sh"
+  			script.sh "bash test.sh ${script.env.BRANCH_NAME} ${script.env.BRANCH_NAME}"
 			}
 		}
 	}
