@@ -6,13 +6,13 @@ import com.pipeline.cicd.helpers.JenkinsHelper
 
 /**
  * In this stage source code clone or checkout is done.
- * So this stage is called as "Preparation".
+ * So this stage is called as "Test".
  * This is initial stage of the project.
  */
-public class Preparation extends AbstractStage {
+public class Test extends AbstractStage {
 
-	Preparation(Object script, JenkinsHelper jenkinsHelper) {
-		super(script, 'Preparation', jenkinsHelper)
+	Test(Object script, JenkinsHelper jenkinsHelper) {
+		super(script, 'Test', jenkinsHelper)
 	}
 
 	@Override
