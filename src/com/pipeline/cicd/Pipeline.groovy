@@ -72,17 +72,13 @@ class Pipeline implements Serializable {
         this.jenkinsHelper = builder.jenkinsHelper
     }
 
-    void executePipeline() {
+    void execute() {
         for (Stage stage : stages) {
             try {
-                stage.executeStage()
-            } catch (Exception e) {
-                handleException(e)
+                stage.execute()
+            } catch (err) {
+                new Exception(script).handle(err)
             }
         }
-    }
-
-    private void handleException(Exception e) {
-        new ExceptionHandler(script).handle(e)
     }
 }
