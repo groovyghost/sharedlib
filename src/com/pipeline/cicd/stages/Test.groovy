@@ -11,8 +11,8 @@ public class Test extends AbstractStage {
 
 	@Override
 	void execute() {
-		script.stage(stageName) {
-			script.node("${Constant.NODE}") {
+		script.node("${Constant.NODE}") {
+			script.stage(stageName) {
 			jenkinsHelper.copyGlobalLibraryScript('test.sh')
   			script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
 			}
