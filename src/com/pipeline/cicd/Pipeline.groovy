@@ -64,8 +64,10 @@ class Pipeline implements Serializable {
         // }
 
         def PipelineBuild() {
-            withPreparationStage()
-            withTestStage()
+            script.node("${Constant.NODE}") {
+                withPreparationStage()
+                withTestStage()
+            }
             return new Pipeline(this)
         }
 
