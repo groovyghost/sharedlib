@@ -1,5 +1,7 @@
 package com.pipeline.cicd
 
-class Constants {
-    static final String DEFAULT_NODE = "agent1"
+class Constant implements Serializable {
+
+	static String NODE = "agent1"
+	Constant() {}
 }

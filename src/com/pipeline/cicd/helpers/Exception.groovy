@@ -2,15 +2,15 @@ package com.pipeline.cicd.helpers
 
 class Exception implements Serializable {
 
-    private final script
+    def script
 
     Exception(script) {
         this.script = script
     }
 
-    void handle(Throwable error) {
+    void handle(def err) {
         script.currentBuild.result = "FAILURE"
-        script.error "Build failed: ${error.message}"
+        script.error "Build failed: ${err.toString()}"
     }
 
 }
