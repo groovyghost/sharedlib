@@ -19,7 +19,7 @@ public class Preparation extends AbstractStage {
 	void execute() {
 		def constant = new Constant()
 		script.stage(stageName) {
-			// def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
+			script.node("${Constant.NODE}") {
 
 			//Checkout code
     		script.checkout script.scm
@@ -27,6 +27,7 @@ public class Preparation extends AbstractStage {
             // Load build properties
 			// def buildProperties = new BuildProperties(script)
 			// buildProperties.readBuildProperties()
+			}
 		}
 	}
 }

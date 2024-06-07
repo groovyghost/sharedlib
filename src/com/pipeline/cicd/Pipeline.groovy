@@ -81,7 +81,7 @@ class Pipeline implements Serializable {
 
     void execute() {
 
-        chooseNode()
+        // chooseNode()
 
         for (Stage stage : stages) {
 
