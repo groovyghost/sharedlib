@@ -1,7 +1,8 @@
 package com.pipeline.cicd.stages
 
-interface Stage extends Serializable {
+interface Stage {
 
     void execute()
 
 }
+

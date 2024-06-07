@@ -55,13 +55,6 @@ class Pipeline implements Serializable {
             stages << new Test(script, jenkinsHelper)
             return this
         }
-        // def withVulnerabityStage(){
-        //     stages << new VulnerabilityAnalysis(script, jenkinsHelper)
-        // }
-
-        // def build() {
-        //     return new Pipeline(this)
-        // }
 
         def PipelineBuild() {
                 withPreparationStage()
@@ -79,30 +72,17 @@ class Pipeline implements Serializable {
         this.jenkinsHelper = builder.jenkinsHelper
     }
 
-    void execute() {
-
-        // chooseNode()
-
+    void executePipeline() {
         for (Stage stage : stages) {
-
             try {
-                stage.execute()
-            } catch (err) {
-                new Exception(script).handle(err)
+                stage.executeStage()
+            } catch (Exception e) {
+                handleException(e)
             }
         }
     }
 
-    void chooseNode() {
-        def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
-        if (isAndroid) {
-            Constant.setNODE("Android-Build")
-        } else if (isIOS) {
-            Constant.setNODE("Contus-Xcode9")
-        }
-        else {
-            Constant.setNODE("agent1")
-        }
+    private void handleException(Exception e) {
+        new ExceptionHandler(script).handle(e)
     }
 }
-
