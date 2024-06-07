@@ -13,7 +13,11 @@ class JenkinsHelper implements Serializable {
         this.script = script
     }
 
-    
+    def copyGlobalLibraryScript(Map config = [:]) { 
+        def scriptcontents = script.libraryResource("${config.name}")
+        script.writeFile file: "${config.name}", text: scriptcontents 
+        script.sh "chmod a+x ./${config.name}"
+} 
 
     def getLastSuccessful(jobName,branchName) {
         assert jobName != null
