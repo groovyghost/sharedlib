@@ -15,8 +15,8 @@ public class Test extends AbstractStage {
 		script.stage(stageName) {
 			script.node("${Constant.NODE}") {
 			def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
-			def scriptcontents = libraryResource "test.sh"
-  			writeFile file: "test.sh", text: scriptcontents 
+			def scriptcontents = script.libraryResource("test.sh")
+  			script.writeFile file: "test.sh", text: scriptcontents 
   			script.sh "chmod a+x ./test.sh"
   			script.sh "bash test.sh ${script.env.BRANCH_NAME} ${script.env.BRANCH_NAME}"
 			}
