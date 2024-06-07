@@ -20,8 +20,6 @@ public class Preparation extends AbstractStage {
 		def constant = new Constant()
 		script.stage(stageName) {
 			def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
-			script.node("${Constant.NODE}") {
-
 			script.sh returnStdout: true, script:"echo ${script.env.SONAR_HOST}"
 			script.sh('#!/bin/sh -e\n' +"echo ${script.env.BRANCH_NAME}")
 
@@ -31,7 +29,6 @@ public class Preparation extends AbstractStage {
             // Load build properties
 			// def buildProperties = new BuildProperties(script)
 			// buildProperties.readBuildProperties()
-			}
 		}
 	}
 }
