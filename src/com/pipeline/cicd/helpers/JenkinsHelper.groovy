@@ -13,12 +13,6 @@ class JenkinsHelper implements Serializable {
         this.script = script
     }
 
-    def copyGlobalLibraryScript(Map config = [:]) { 
-        def scriptcontents = script.libraryResource("${config.name}")
-        script.writeFile file: "${config.name}", text: scriptcontents 
-        script.sh "chmod a+x ./${config.name}"
-} 
-
     def getLastSuccessful(jobName,branchName) {
         assert jobName != null
         return Jenkins.instance.getItem(jobName).getItem(branchName).lastSuccessfulBuild.number
@@ -73,7 +67,7 @@ class JenkinsHelper implements Serializable {
 
         destPath = destPath ?: createTempLocation(srcPath)
         script.writeFile file: destPath, text: script.libraryResource(srcPath)
-        script.echo "copyGlobalLibraryScript: copied ${srcPath} to ${destPath}"
+        //script.echo "copyGlobalLibraryScript: copied ${srcPath} to ${destPath}"
         return destPath
     }
 

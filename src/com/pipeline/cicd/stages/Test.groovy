@@ -15,7 +15,7 @@ public class Test extends AbstractStage {
 		script.stage(stageName) {
 			script.node("${Constant.NODE}") {
 			def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
-			jenkinsHelper.copyGlobalLibraryScript("test.sh")
+			jenkinsHelper.copyGlobalLibraryScript('test.sh')
   			script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
 			}
 		}
