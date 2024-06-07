@@ -20,7 +20,9 @@ public class Test extends AbstractStage {
 		def constant = new Constant()
 		script.stage(stageName) {
 			def PROJECT_REPO_BRANCH = "${script.env.BRANCH_NAME}"
- 			loadLinuxScript(name: 'test.sh')
+			def scriptcontents = libraryResource "test.sh"    
+  			writeFile file: "test.sh", text: scriptcontents 
+  			sh "chmod a+x ./test.sh"
     		sh "bash test.sh ${script.env.BRANCH_NAME} ${script.env.BRANCH_NAME}"
 			script.sh returnStdout: true, script:"echo ${script.env.SONAR_HOST}"
 			script.sh('resources/test.sh')
