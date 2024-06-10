@@ -8,7 +8,7 @@ public class Test extends AbstractStage {
     Test(Object script, JenkinsHelper jenkinsHelper) {
         super(script, 'Test', jenkinsHelper)
     }
-	def deployChoice
+
 	@Override
 	void execute() {
 		script.stage(stageName) {
