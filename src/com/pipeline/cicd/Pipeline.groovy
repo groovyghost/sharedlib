@@ -8,7 +8,7 @@ import org.jenkinsci.plugins.workflow.cps.DSL
 class Pipeline implements Serializable {
 
     private final script
-    private final List<Stage> stages = []
+    private final stages = []
     private final DSL steps
     private final JenkinsHelper jenkinsHelper
 
@@ -21,7 +21,7 @@ class Pipeline implements Serializable {
         private final script
         private final DSL steps
         private final JenkinsHelper jenkinsHelper
-        private final List<Stage> stages = []
+        private final stages = []
 
         Builder(script, DSL steps) {
             this.script = script
