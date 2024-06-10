@@ -8,10 +8,11 @@ public class Test extends AbstractStage {
     Test(Object script, JenkinsHelper jenkinsHelper) {
         super(script, 'Test', jenkinsHelper)
     }
+def deployChoice
 @Override
 void execute() {
 	script.timeout(time: 1, unit: 'MINUTES') {
-			def deployChoice = script.input(
+		deployChoice = script.input(
 		id: 'approve_for_deployment',
 		message: 'Approve for deployment',
 		ok: 'Proceed',
