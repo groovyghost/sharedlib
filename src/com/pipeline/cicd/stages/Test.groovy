@@ -21,8 +21,8 @@ public class Test extends AbstractStage {
 						[
 								script.choice(name: 'Release to deploy?', choices: ["Yes", "No"].join
 										("\n"), description: 'NO - Build will not be deploy in stage server' )
-						] ,
-						submitter: 'rahul',submitterParameter: 'Approver'
+						] 
+						// ,submitter: 'rahul',submitterParameter: 'Approver'
 				}
 			script.echo("Approval Comment: ${leadApprovalComment}");
 			}
