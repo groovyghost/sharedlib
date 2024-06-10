@@ -26,7 +26,7 @@ public class Test extends AbstractStage {
 				}
 			script.echo("Approval Comment: ${leadApprovalComment}");
 			}
-            if (leadApprovalComment.contains("Yes")) {
+            if (leadApprovalComment.toString().contains("Yes") && leadApprovalComment.toString().contains("rahul")) {
 				script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
             	}
             else {
