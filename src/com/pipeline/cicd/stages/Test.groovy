@@ -10,7 +10,8 @@ public class Test extends AbstractStage {
     }
 @Override
 void execute() {
-	def deployChoice = script.input(
+	script.timeout(time: 1, unit: 'MINUTES') {
+			def deployChoice = script.input(
 		id: 'approve_for_deployment',
 		message: 'Approve for deployment',
 		ok: 'Proceed',
@@ -18,8 +19,10 @@ void execute() {
 			name: 'Release to deploy?',
 			choices: 'Yes\nNo',
 			description: 'NO - Build will not be deployed in the stage server')],
-		submitter: ${Constant.AUTHOR},
+		submitter: 'rahul',
 	)
+	}
+
 
 	script.stage(stageName) {
 		script.node(Constant.NODE) {
