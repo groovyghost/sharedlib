@@ -18,7 +18,7 @@ void execute() {
 			name: 'Release to deploy?',
 			choices: 'Yes\nNo',
 			description: 'NO - Build will not be deployed in the stage server')],
-		submitter: '${Constant.AUTHOR}',
+		submitter: ${Constant.AUTHOR},
 	)
 
 	script.stage(stageName) {
