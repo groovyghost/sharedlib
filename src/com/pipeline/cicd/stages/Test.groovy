@@ -24,7 +24,7 @@ public class Test extends AbstractStage {
 						] ,
 						submitter: 'rahul'
 				}
-			script.echo("Approval Comment: ${leadApprovalComment} ${leadApprovalComment.submitter}");
+			script.echo("Approval Comment: ${leadApprovalComment}");
             if (leadApprovalComment.contains("Yes")) {
 				script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
             	}
