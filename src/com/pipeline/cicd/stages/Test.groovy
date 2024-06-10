@@ -15,7 +15,7 @@ public class Test extends AbstractStage {
 		script.stage(stageName) {
 		script.node("${Constant.NODE}") {
 			jenkinsHelper.copyGlobalLibraryScript('test.sh')
-			script.node("none"){
+			script.node(none){
 				script.timeout(time: 5, unit: 'DAYS') {
 				leadApprovalComment = script.input id: 'approve_for_Production', message: 'Approve For Deploy', ok:
 						'Proceed' , parameters:
