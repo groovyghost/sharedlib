@@ -16,19 +16,21 @@ public class Test extends AbstractStage {
 			script.stage(stageName) {
 			jenkinsHelper.copyGlobalLibraryScript('test.sh')
 			script.timeout(time: 5, unit: 'DAYS') {
-				leadApprovalComment = script.input id: 'approve_for_qa', message: 'Approve for Production Deployment', ok:
-                'Proceed' , parameters: 
-				[ script.choice(name: 'Deploy Production Server?', choices: ["Proceed", "Abort"].join
-				("\n"), description: 'Build Deploy from stage/hotfix branch')] ,
-				submitter: 'rahul'
+				leadApprovalComment = script.input id: 'approve_for_Production', message: 'Approve For Deploy', ok:
+						'Proceed' , parameters:
+						[
+								script.choice(name: 'Release to deploy?', choices: ["Yes", "No"].join
+										("\n"), description: 'NO - Build will not be deploy in stage server' )
+						] ,
+						submitter: 'rahul.a@contus.in'
 				}
 			script.echo("Approval Comment: ${leadApprovalComment}");
-            if (leadApprovalComment.contains("Abort")) {
-                script.currentBuild.result = "ABORTED"
-                script.error "Lead aborted this job"
+            if (leadApprovalComment.contains("Yes")) {
+				script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
             	}
             else {
-			script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
+			 script.currentBuild.result = "ABORTED"
+                script.error "Lead aborted this job"
 				}
 			}
 		}
