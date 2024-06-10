@@ -12,8 +12,8 @@ public class Test extends AbstractStage {
 	def leadApprovalComment
 	@Override
 	void execute() {
+		script.stage(stageName) {
 		script.node("${Constant.NODE}") {
-			script.stage(stageName) {
 			jenkinsHelper.copyGlobalLibraryScript('test.sh')
 			script.timeout(time: 5, unit: 'DAYS') {
 				leadApprovalComment = script.input id: 'approve_for_Production', message: 'Approve For Deploy', ok:
@@ -22,7 +22,7 @@ public class Test extends AbstractStage {
 								script.choice(name: 'Release to deploy?', choices: ["Yes", "No"].join
 										("\n"), description: 'NO - Build will not be deploy in stage server' )
 						] ,
-						submitter: 'rahul'
+						submitter: 'rahul.a@contus.in'
 				}
 			script.echo("Approval Comment: ${leadApprovalComment}");
             if (leadApprovalComment.contains("Yes")) {
