@@ -3,6 +3,7 @@ package com.pipeline.cicd
 import com.pipeline.cicd.helpers.Exception
 import com.pipeline.cicd.helpers.JenkinsHelper
 import com.pipeline.cicd.stages.Stage
+import org.jenkinsci.plugins.workflow.cps.DSL
 
 class Pipeline implements Serializable {
 
