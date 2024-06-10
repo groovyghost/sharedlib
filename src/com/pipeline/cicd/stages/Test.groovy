@@ -22,15 +22,15 @@ public class Test extends AbstractStage {
 								script.choice(name: 'Release to deploy?', choices: ["Yes", "No"].join
 										("\n"), description: 'NO - Build will not be deploy in stage server' )
 						] ,
-						submitter: 'rahul.a@contus.in'
+						submitter: 'rahul'
 				}
-			script.echo("Approval Comment: ${leadApprovalComment}");
+			script.echo("Approval Comment: ${leadApprovalComment} ${leadApprovalComment.submitter}");
             if (leadApprovalComment.contains("Yes")) {
 				script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
             	}
             else {
 			 script.currentBuild.result = "ABORTED"
-                script.error "Lead aborted this job"
+             script.error "Lead aborted this job"
 				}
 			}
 		}
