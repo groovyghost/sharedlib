@@ -19,7 +19,7 @@ void execute() {
 			name: 'Release to deploy?',
 			choices: 'Yes\nNo',
 			description: 'NO - Build will not be deployed in the stage server')],
-		submitter: 'rahul',
+		submitter: Constant.AUTHOR,
 	)
 	}
 
