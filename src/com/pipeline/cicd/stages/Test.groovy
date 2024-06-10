@@ -9,6 +9,7 @@ public class Test extends AbstractStage {
         super(script, 'Test', jenkinsHelper)
     }
 
+	def leadApprovalComment
 	@Override
 	void execute() {
 		script.node("${Constant.NODE}") {
