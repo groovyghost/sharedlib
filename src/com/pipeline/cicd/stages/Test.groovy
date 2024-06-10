@@ -8,29 +8,31 @@ public class Test extends AbstractStage {
     Test(Object script, JenkinsHelper jenkinsHelper) {
         super(script, 'Test', jenkinsHelper)
     }
-	def leadApprovalComment
+	def deployChoice
 	@Override
 	void execute() {
 		script.stage(stageName) {
-		script.node("${Constant.NODE}") {
-			jenkinsHelper.copyGlobalLibraryScript('test.sh')
-				script.timeout(time: 1, unit: 'MINUTES') {
-				def leadApprovalComment = script.input id: 'approve_for_Production', message: 'Approve For Deploy', ok:
-						'Proceed' , parameters:
-						[
-								script.choice(name: 'Release to deploy?', choices: ["Yes", "No"].join
-										("\n"), description: 'NO - Build will not be deploy in stage server' )
-						], submitter: 'rahul'
+			script.node(Constant.NODE) {
+				def deployChoice = script.input(
+						id: 'approve_for_deployment',
+						message: 'Approve for deployment',
+						ok: 'Proceed',
+						parameters: [script.choice(
+								name: 'Release to deploy?',
+								choices: 'Yes\nNo',
+								description: 'NO - Build will not be deployed in the stage server')],
+						submitter: 'rahul'
+				)
+
+				if (deployChoice.contains("Yes")) {
+					jenkinsHelper.copyGlobalLibraryScript('test.sh')
+					script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
 				}
-			script.echo("Approval Comment: ${leadApprovalComment}");
-            if (leadApprovalComment.contains("Yes")) {
-				script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
-            	}
-            else {
-			 script.currentBuild.result = "ABORTED"
-             script.error "Lead aborted this job"
+				else {
+					script.currentBuild.result = "ABORTED"
+					script.error "Lead aborted this job"
+				}
 			}
 		}
 	}
-}
 }
