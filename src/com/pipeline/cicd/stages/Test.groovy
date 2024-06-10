@@ -18,9 +18,9 @@ public class Test extends AbstractStage {
 			script.timeout(time: 5, unit: 'DAYS') {
 				leadApprovalComment = script.input id: 'approve_for_qa', message: 'Approve for Production Deployment', ok:
                 'Proceed' , parameters: 
-				[ script.choice(name: 'Deploy Production Server?', choices: ["Master", "Hotfix", "Abort"].join
+				[ script.choice(name: 'Deploy Production Server?', choices: ["Proceed", "Abort"].join
 				("\n"), description: 'Build Deploy from stage/hotfix branch')] ,
-				submitter: 'rahul@contus.in'
+				submitter: 'rahul'
 				}
 			script.echo("Approval Comment: ${leadApprovalComment}");
             if (leadApprovalComment.contains("Abort")) {
