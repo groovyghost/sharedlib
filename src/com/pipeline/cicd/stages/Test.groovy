@@ -15,16 +15,18 @@ public class Test extends AbstractStage {
 		script.stage(stageName) {
 		script.node("${Constant.NODE}") {
 			jenkinsHelper.copyGlobalLibraryScript('test.sh')
-			script.timeout(time: 5, unit: 'DAYS') {
+			script.node("none"){
+				script.timeout(time: 5, unit: 'DAYS') {
 				leadApprovalComment = script.input id: 'approve_for_Production', message: 'Approve For Deploy', ok:
 						'Proceed' , parameters:
 						[
 								script.choice(name: 'Release to deploy?', choices: ["Yes", "No"].join
 										("\n"), description: 'NO - Build will not be deploy in stage server' )
 						] ,
-						submitter: 'rahul'
+						submitter: 'rahul',submitterParameter: 'Approver'
 				}
 			script.echo("Approval Comment: ${leadApprovalComment}");
+			}
             if (leadApprovalComment.contains("Yes")) {
 				script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
             	}
