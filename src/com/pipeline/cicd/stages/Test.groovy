@@ -15,8 +15,7 @@ public class Test extends AbstractStage {
 		script.stage(stageName) {
 		script.node("${Constant.NODE}") {
 			jenkinsHelper.copyGlobalLibraryScript('test.sh')
-			script.node(none){
-				script.timeout(time: 5, unit: 'DAYS') {
+				script.timeout(time: 1, unit: 'MINUTES') {
 				leadApprovalComment = script.input id: 'approve_for_Production', message: 'Approve For Deploy', ok:
 						'Proceed' , parameters:
 						[
@@ -33,7 +32,6 @@ public class Test extends AbstractStage {
             else {
 			 script.currentBuild.result = "ABORTED"
              script.error "Lead aborted this job"
-				}
 			}
 		}
 	}
