@@ -3,10 +3,10 @@ package com.pipeline.cicd.stages
 import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.JenkinsHelper
 
-public class Test extends AbstractStage {
+public class Approval extends AbstractStage {
 
-    Test(Object script, JenkinsHelper jenkinsHelper) {
-        super(script, 'Test', jenkinsHelper)
+    Approval(Object script, JenkinsHelper jenkinsHelper) {
+        super(script, 'Approval', jenkinsHelper)
     }
 
     @Override
