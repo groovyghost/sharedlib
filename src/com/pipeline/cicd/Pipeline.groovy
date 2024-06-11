@@ -51,20 +51,20 @@ class Pipeline implements Serializable {
             stages << new Preparation(script, jenkinsHelper)
             return this
         }
-        def withTestStage() {
-            stages << new Test(script, jenkinsHelper)
+        def withApprovalStage() {
+            stages << new Approval(script, jenkinsHelper)
             return this
         }
 
-        def withTest2Stage() {
-            stages << new Test2(script, jenkinsHelper)
+        def withMailStage() {
+            stages << new Mail(script, jenkinsHelper)
             return this
         }
 
         def PipelineBuild() {
                 withPreparationStage()
-                withTestStage()
-                withTest2Stage()
+                withApprovalStage()
+                withMailStage()
             return new Pipeline(this)
         }
 
