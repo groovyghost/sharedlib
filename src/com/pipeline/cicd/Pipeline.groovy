@@ -56,6 +56,11 @@ class Pipeline implements Serializable {
             return this
         }
 
+        def withCleanupStage() {
+            stages << new Cleanup(script, jenkinsHelper)
+            return this
+        }
+
         def withMailStage() {
             stages << new Mail(script, jenkinsHelper)
             return this
@@ -65,6 +70,7 @@ class Pipeline implements Serializable {
                 withPreparationStage()
                 withApprovalStage()
                 withMailStage()
+                withCleanupStage()
             return new Pipeline(this)
         }
 
