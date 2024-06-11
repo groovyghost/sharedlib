@@ -18,8 +18,8 @@ public class Test extends AbstractStage {
             script.stage(stageName) {
                 script.node(Constant.NODE) {
                     if (deployChoice == 'Yes') {
-                        jenkinsHelper.copyGlobalLibraryScript('test.sh')
-                        script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
+                        scriptpath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
+                        script.sh "bash ${scriptpath} ${script.env.BRANCH_NAME} working"
                     } else {
                         script.currentBuild.result = "ABORTED"
                         script.error "Lead aborted this job"

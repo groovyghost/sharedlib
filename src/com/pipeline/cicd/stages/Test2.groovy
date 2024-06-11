@@ -13,8 +13,8 @@ public class Test2 extends AbstractStage {
     void execute() {
             script.stage(stageName) {
                 script.node(Constant.NODE) {
-                jenkinsHelper.copyGlobalLibraryScript('test.sh')
-                script.sh "bash test.sh ${script.env.BRANCH_NAME} working"
+                scriptpath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
+                script.sh "bash ${scriptpath} ${script.env.BRANCH_NAME} working"
                 script.emailext subject: "Subject of email",
                                 body: "Body of message"
                                 from: "rahul.a@contus.in"
