@@ -18,7 +18,7 @@ public class Test extends AbstractStage {
             script.stage(stageName) {
                 script.node(Constant.NODE) {
                     if (deployChoice == 'Yes') {
-                        scriptpath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
+                        String scriptpath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
                         script.sh "bash ${scriptpath} ${script.env.BRANCH_NAME} working"
                     } else {
                         script.currentBuild.result = "ABORTED"
