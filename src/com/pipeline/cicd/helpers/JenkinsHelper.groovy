@@ -20,14 +20,14 @@ class JenkinsHelper implements Serializable {
         script.writeFile file: destinationPath, text: script.libraryResource(sourcePath)
         return destinationPath
     }
-    
-    void sendMail(String status, String from, String to, String cc, String subject, String body) {
-        script.mail(
-            from: from,
-            to: to,
-            cc: cc,
-            subject: "${status} - ${subject}",
-            body: body
-        )
-    }
+
+    // void sendMail(String status, String from, String to, String cc, String subject, String body) {
+    //     script.mail(
+    //         from: from,
+    //         to: to,
+    //         cc: cc,
+    //         subject: "${status} - ${subject}",
+    //         body: body
+    //     )
+    // }
 }
