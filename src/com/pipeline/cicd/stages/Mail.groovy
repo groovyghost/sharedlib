@@ -14,7 +14,7 @@ public class Mail extends AbstractStage {
         script.stage(stageName) {
             script.node(Constant.NODE) {
                 String scriptPath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
-                script.sh "bash some ${script.env.BRANCH_NAME} working"
+                script.sh "bash ${scriptPath} ${script.env.BRANCH_NAME} working"
                 script.mail(
                     body: 'Body for mail',
                     cc: 'rahul.a@contus.in',
