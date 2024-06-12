@@ -11,11 +11,18 @@ public class Mail extends AbstractStage {
 
     @Override
     void execute() {
-            script.stage(stageName) {
-                script.node(Constant.NODE) {
-                String scriptpath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
-                script.sh "bash ${scriptpath} ${script.env.BRANCH_NAME} working"
-                script.mail(body: 'Body for mail', cc: 'rahul.a@contus.in', from: 'Jenkins', subject: 'Test subject', to: 'rahula7200@gmail.com')            }
+        script.stage(stageName) {
+            script.node(Constant.NODE) {
+                String scriptPath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
+                script.sh "bash ${scriptPath} ${script.env.BRANCH_NAME} working"
+                script.mail(
+                    body: 'Body for mail',
+                    cc: 'rahul.a@contus.in',
+                    from: 'Jenkins',
+                    subject: 'Test subject',
+                    to: 'rahula7200@gmail.com'
+                )
+            }
         }
     }
 }
