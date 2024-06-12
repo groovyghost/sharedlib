@@ -15,14 +15,12 @@ public class Mail extends AbstractStage {
             script.node(Constant.NODE) {
                 String scriptPath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
                 script.sh("bash ${scriptPath} ${script.env.BRANCH_NAME} working")
-                script.post {
-                    failure {
-                        sendMail('Failed', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
-                    }
-
-                    success {
-                        sendMail('Success', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
-                    }
+                if(script.currentBuild.result = "SUCCESS"){
+                    sendMail('Success', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
+                }
+                else(script.currentBuild.result = "FAILURE"){
+                    sendMail('Failed', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
+                }
                 }
             }
         }
@@ -36,5 +34,5 @@ public class Mail extends AbstractStage {
             subject: "${status} - ${subject}",
             body: body
         )
-    }
 }
+
