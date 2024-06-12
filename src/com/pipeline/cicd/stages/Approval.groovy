@@ -19,7 +19,7 @@ public class Approval extends AbstractStage {
                 script.node(Constant.NODE) {
                     if (deployChoice == 'Yes') {
                         String scriptpath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
-                        script.sh "bash ${scriptpath} ${script.env.BRANCH_NAME} working"
+                        script.sh("bash ${scriptpath} ${script.env.BRANCH_NAME} working")
                     } else {
                         script.currentBuild.result = "ABORTED"
                         script.error "Lead aborted this job"
