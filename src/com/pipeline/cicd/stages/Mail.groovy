@@ -15,15 +15,26 @@ public class Mail extends AbstractStage {
             script.node(Constant.NODE) {
                 String scriptPath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
                 script.sh("bash ${scriptPath} ${script.env.BRANCH_NAME} working")
-                script.mail(
-                    body: 'Body for mail',
-                    cc: 'rahul.a@contus.in',
-                    from: 'Jenkins',
-                    subject: 'Test subject',
-                    to: 'rahula7200@gmail.com'
-                )
+                script.post {
+                    failure {
+                        sendMail('Failed', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
+                    }
+
+                    success {
+                        sendMail('Success', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
+                    }
+                }
             }
         }
     }
-}
 
+    private void sendMail(String status, String from, String to, String cc, String subject, String body) {
+        script.mail(
+            from: from,
+            to: to,
+            cc: cc,
+            subject: "${status} - ${subject}",
+            body: body
+        )
+    }
+}
