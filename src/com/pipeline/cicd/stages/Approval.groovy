@@ -11,7 +11,7 @@ public class Approval extends AbstractStage {
 
     @Override
     void execute() {
-        script.timeout(time: 1, unit: 'MINUTES') {
+        script.timeout(time: 10, unit: 'MINUTES') {
             String deployChoice = script.input id: 'approveForDeployment', message: 'Approve for deployment',
                     parameters: [script.choice(name: 'Release to deploy?', choices: 'Yes\nNo')], submitter: Constant.AUTHOR
 
