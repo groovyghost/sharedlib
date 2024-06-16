@@ -13,6 +13,7 @@ public class Preparation extends AbstractStage {
     void execute() {
         script.node(Constant.NODE) {
             script.stage(stageName) {
+                ansiColor('xterm')
                 script.checkout script.scm
                 List<String> files = ['config.json', 'deploy-docker.sh', 'utils.sh']
                 if (files != null) {
