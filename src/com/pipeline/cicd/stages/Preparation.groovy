@@ -13,22 +13,16 @@ public class Preparation extends AbstractStage {
     void execute() {
         script.node(Constant.NODE) {
             script.stage(stageName) {
-                try {
-                    script.checkout script.scm
-                    File resourcesDir = new File(
-                            getClass().getClassLoader().getResource("resources").getFile())
-                    if (resourcesDir != null) {
-                        resourcesDir.eachFile { File scriptFile ->
-                            String scriptPath = jenkinsHelper.copyGlobalLibraryScript(
-                                    scriptFile.getName(), scriptFile.getName())
-                            if (scriptPath != null) {
-                                script.println(scriptPath)
-                            }
+                script.checkout script.scm
+                List<String> files = ['config.json', 'deploy-docker.sh', 'utils.sh']
+                if (files != null) {
+                    for (String file : files) {
+                        if (file != null) {
+                            jenkinsHelper.copyGlobalLibraryScript(file)
                         }
                     }
-                } catch (Exception e) {
-                    script.error("Error during Preparation stage: ${e.getMessage()}")
                 }
+                script.sh("bash deploy-docker.sh working")
             }
         }
     }
