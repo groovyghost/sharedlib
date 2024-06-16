@@ -11,15 +11,26 @@ public class Preparation extends AbstractStage {
 
     @Override
     void execute() {
-		script.node("${Constant.NODE}") {
-			script.stage(stageName) {
-            script.checkout script.scm
-            File resourcesDir = new File(this.getClass().getClassLoader().getResource("resources").getFile())
-            resourcesDir.eachFile { File scriptFile ->
-                String scriptPath = jenkinsHelper.copyGlobalLibraryScript(scriptFile.getName(), scriptFile.getName())
+        script.node(Constant.NODE) {
+            script.stage(stageName) {
+                try {
+                    script.checkout script.scm
+                    File resourcesDir = new File(
+                            getClass().getClassLoader().getResource("resources").getFile())
+                    if (resourcesDir != null) {
+                        resourcesDir.eachFile { File scriptFile ->
+                            String scriptPath = jenkinsHelper.copyGlobalLibraryScript(
+                                    scriptFile.getName(), scriptFile.getName())
+                            if (scriptPath != null) {
+                                script.println(scriptPath)
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    script.error("Error during Preparation stage: ${e.getMessage()}")
+                }
             }
-            script.println ("${scriptPath}")
-        	}
         }
     }
 }
+
