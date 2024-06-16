@@ -24,7 +24,7 @@ public class Preparation extends AbstractStage {
                 }
                 if(files.contains("deploy-docker.sh")){
                     String scriptPath = jenkinsHelper.copyGlobalLibraryScript("deploy-docker.sh")
-                    script.sh("bash ${scriptPath} working")
+                    script.sh("bash ${scriptPath} '${ServiceName}'")
                 }
             }
         }
