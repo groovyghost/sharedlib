@@ -16,12 +16,6 @@ class Pipeline implements Serializable {
 
     JenkinsHelper jenkinsHelper
 
-    // static boolean isAndroid = false
-
-    // static boolean isIOS = false
-
-    // static boolean isDebug = false
-
     static builder(script, DSL steps) {
         return new Builder(script, steps)
     }
@@ -32,13 +26,11 @@ class Pipeline implements Serializable {
 
         def script
 
-        // def approvalQAComment
-
         DSL steps
 
         JenkinsHelper jenkinsHelper
 
-        // def PROJECT_REPO_BRANCH;
+        def PROJECT_REPO_BRANCH;
 
         Builder(def script, DSL steps) {
             this.script = script
