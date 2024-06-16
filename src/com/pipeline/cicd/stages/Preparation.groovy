@@ -12,7 +12,6 @@ public class Preparation extends AbstractStage {
     @Override
     void execute() {
         script.node(Constant.NODE) {
-             ansiColor('xterm') {
             script.stage(stageName) {
                 script.checkout script.scm
                 List<String> files = ['config.json', 'deploy-docker.sh', 'utils.sh']
@@ -28,7 +27,6 @@ public class Preparation extends AbstractStage {
                     script.sh("bash ${scriptPath} working")
                 }
             }
-             }
         }
     }
 }
