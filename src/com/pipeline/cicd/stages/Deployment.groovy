@@ -3,10 +3,10 @@ package com.pipeline.cicd.stages
 import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.JenkinsHelper
 
-public class Approval extends AbstractStage {
+public class Deployment extends AbstractStage {
 
-    Approval(Object script, JenkinsHelper jenkinsHelper) {
-        super(script, 'Approval', jenkinsHelper)
+    Deployment(Object script, JenkinsHelper jenkinsHelper) {
+        super(script, 'Deployment', jenkinsHelper)
     }
 
     @Override
@@ -17,14 +17,18 @@ public class Approval extends AbstractStage {
 
             script.stage(stageName) {
                 script.node(Constant.NODE) {
+                    def buildProperties = new BuildProperties(script)
+                    buildProperties.readBuildProperties()
                     if (deployChoice == 'Yes') {
                         script.withEnv(["BRANCH_NAME=${script.env.BRANCH_NAME}","MYENV=rahul"]){
-                        String scriptpath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
-                        script.sh("bash ${scriptpath} ${script.env.BRANCH_NAME} working")
+                        String scriptPath = jenkinsHelper.copyGlobalLibraryScript("deploy-docker.sh")
+                        script.sh("bash ${scriptPath} ${Constant.SERVICE_NAME}")
                         }
-                    } else {
+                    } else if (deployChoice == 'No'){
                         script.currentBuild.result = "ABORTED"
                         script.error "Lead aborted this job"
+                    } else {
+                        script.error "Invalid input"
                     }
                 }
             }

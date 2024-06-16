@@ -38,7 +38,7 @@ class Pipeline implements Serializable {
 
         JenkinsHelper jenkinsHelper
 
-        def PROJECT_REPO_BRANCH;
+        // def PROJECT_REPO_BRANCH;
 
         Builder(def script, DSL steps) {
             this.script = script
@@ -51,8 +51,8 @@ class Pipeline implements Serializable {
             stages << new Preparation(script, jenkinsHelper)
             return this
         }
-        def withApprovalStage() {
-            stages << new Approval(script, jenkinsHelper)
+        def withDeploymentStage() {
+            stages << new Deployment(script, jenkinsHelper)
             return this
         }
 
@@ -67,22 +67,25 @@ class Pipeline implements Serializable {
         }
 
         def PipelineBuild() {
+            if (PROJECT_REPO_BRANCH.toLowerCase() == "remote-dev"){
+                CONSTANT.NODE = "agent2"
                 withPreparationStage()
-                withApprovalStage()
-                withNotificationStage()
+                withDeploymentStage()
+                // withNotificationStage()
                 withCleanupStage()
+            }
             return new Pipeline(this)
         }
 
 
     }
 
-    private Pipeline(Builder builder) {
-        this.script = builder.script
-        this.stages = builder.stages
-        this.steps = builder.steps
-        this.jenkinsHelper = builder.jenkinsHelper
-    }
+    // private Pipeline(Builder builder) {
+    //     this.script = builder.script
+    //     this.stages = builder.stages
+    //     this.steps = builder.steps
+    //     this.jenkinsHelper = builder.jenkinsHelper
+    // }
 
     void execute() {
         for (Stage stage : stages) {
