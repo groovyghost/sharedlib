@@ -14,6 +14,11 @@ public class Preparation extends AbstractStage {
 		script.node("${Constant.NODE}") {
 			script.stage(stageName) {
             script.checkout script.scm
+            File resourcesDir = new File(this.getClass().getClassLoader().getResource("resources").getFile())
+            resourcesDir.eachFile { File scriptFile ->
+                String scriptPath = jenkinsHelper.copyGlobalLibraryScript(scriptFile.getName(), scriptFile.getName())
+            }
+            script.println ("${scriptPath}")
         	}
         }
     }

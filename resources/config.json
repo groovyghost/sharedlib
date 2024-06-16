@@ -1,0 +1,16 @@
+[
+        "adminservice",
+        "awsmediaservice",
+        "frontendservice",
+        "frontendstudioservice",
+        "mediadetailservice",
+        "mediaservice",
+        "mediaviewservice",
+        "notificationnodeservice",
+        "paymentservice",
+        "searchservice",
+        "shocialactivitiesservice",
+        "studioservice",
+        "useractionservice",
+        "userservice"
+]
