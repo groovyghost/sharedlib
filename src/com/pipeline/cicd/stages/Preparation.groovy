@@ -18,11 +18,14 @@ public class Preparation extends AbstractStage {
                 if (files != null) {
                     for (String file : files) {
                         if (file != null) {
-                            jenkinsHelper.copyGlobalLibraryScript(file)
+                            String scriptPath = jenkinsHelper.copyGlobalLibraryScript(file)
                         }
                     }
                 }
-                script.sh("bash deploy-docker.sh working")
+                if(files.contains("deploy-docker.sh")){
+                    String scriptPath = jenkinsHelper.copyGlobalLibraryScript("deploy-docker.sh")
+                    script.sh("bash ${scriptPath} working")
+                }
             }
         }
     }
