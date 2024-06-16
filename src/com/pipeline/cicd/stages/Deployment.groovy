@@ -2,7 +2,7 @@ package com.pipeline.cicd.stages
 
 import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.JenkinsHelper
-import com.contus.cd.helpers.BuildProperties
+import com.pipeline.cicd.helpers.BuildProperties
 
 public class Deployment extends AbstractStage {
 

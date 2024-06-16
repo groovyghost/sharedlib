@@ -1,6 +1,6 @@
-package com.contus.cd.helpers
+package com.pipeline.cicd.helpers
 
-import com.contus.cd.Constant
+import com.pipeline.cicd.Constant
 
 
 class BuildProperties implements Serializable {
