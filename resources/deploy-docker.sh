@@ -9,7 +9,7 @@ check_service_exists() {
   local service_name="$1"
   local service_to_check
 
-  service_to_check=$(jq -r --arg service "$service_name" '.[$project][] | select(. == $service)' "$JSON_FILE")
+  service_to_check=$(jq -r --arg service "$service_name" '.[] | select(. == $service)' "$JSON_FILE")
 
   if [[ -z "$service_to_check" ]]; then
     error "$service_name does not exist in config. Exiting."
