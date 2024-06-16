@@ -67,7 +67,7 @@ class Pipeline implements Serializable {
         }
 
         def PipelineBuild() {
-            if (PROJECT_REPO_BRANCH.toLowerCase() == "remote-dev"){
+            if (PROJECT_REPO_BRANCH.toLowerCase() == "feature/v1"){
                 CONSTANT.NODE = "agent2"
                 withPreparationStage()
                 withDeploymentStage()
