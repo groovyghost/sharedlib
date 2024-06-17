@@ -43,13 +43,14 @@ class Pipeline implements Serializable {
             stages << new Preparation(script, jenkinsHelper)
             return this
         }
-        def withDeploymentStage() {
-            stages << new Deployment(script, jenkinsHelper)
+
+        def withBuildStage() {
+            stages << new Build(script, jenkinsHelper)
             return this
         }
 
-        def withCleanupStage() {
-            stages << new Cleanup(script, jenkinsHelper)
+        def withDeploymentStage() {
+            stages << new Deployment(script, jenkinsHelper)
             return this
         }
 
@@ -57,8 +58,8 @@ class Pipeline implements Serializable {
             stages << new Notification(script, jenkinsHelper)
             return this
         }
-        def withBuildStage() {
-            stages << new Build(script, jenkinsHelper)
+        def withCleanupStage() {
+            stages << new Cleanup(script, jenkinsHelper)
             return this
         }
 
@@ -73,8 +74,6 @@ class Pipeline implements Serializable {
             }
             return new Pipeline(this)
         }
-
-
     }
 
     private Pipeline(Builder builder) {
