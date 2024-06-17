@@ -14,12 +14,12 @@ public class Build extends AbstractStage {
     void execute() {
         script.stage(stageName) {
             script.node(Constant.NODE) {
-                if (Constant.serviceName == null) {
-                    throw new IllegalStateException("Constant.serviceName is null")
+                if (Constant.SERVICE_NAME == null) {
+                    throw new IllegalStateException("Constant.SERVICE_NAME is null")
                 }
                 def properties = new BuildProperties(script)
                 properties.readBuildProperties()
-                script.sh "docker build -t ${Constant.serviceName} . --no-cache"
+                script.sh "docker build -t ${Constant.SERVICE_NAME} . --no-cache"
             }
         }
     }
