@@ -57,11 +57,16 @@ class Pipeline implements Serializable {
             stages << new Notification(script, jenkinsHelper)
             return this
         }
+        def withBuildStage() {
+            stages << new Build(script, jenkinsHelper)
+            return this
+        }
 
         def PipelineBuild() {
             if (PROJECT_REPO_BRANCH.toLowerCase() == "feature/v1"){
                 Constant.NODE = "agent2"
                 withPreparationStage()
+                withBuildStage()
                 withDeploymentStage()
                 // withNotificationStage()
                 withCleanupStage()
