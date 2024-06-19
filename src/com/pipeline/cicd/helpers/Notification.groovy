@@ -18,3 +18,4 @@ class Notification implements Serializable {
             body: emailContent
         )
     }
+}
