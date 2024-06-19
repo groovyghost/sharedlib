@@ -3,6 +3,7 @@ package com.pipeline.cicd.stages.UAT
 import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.JenkinsHelper
 import com.pipeline.cicd.helpers.BuildProperties
+import com.pipeline.cicd.stages.AbstractStage
 
 public class UATBuild extends AbstractStage {
 
