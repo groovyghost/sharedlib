@@ -83,11 +83,11 @@ class Pipeline implements Serializable {
         for (Stage stage : stages) {
             try {
                 stage.execute()
+                Notification.sendNotification(script.currentBuild.result)
             } catch (err) {
+                script.currentBuild.result = 'FAILURE'
+                Notification.sendNotification(script.currentBuild.result)
                 // new Exception(script).handle(err)
-                println 'error'
-            } finally {
-                println 'finally'
             }
         }
     }
