@@ -30,9 +30,11 @@ public class UATDeployment extends AbstractStage {
                         if (deployChoice == 'Yes') {
                             String scriptPath = jenkinsHelper.copyGlobalLibraryScript("deploy-docker.sh")
                             script.sh("bash ${scriptPath} ${Constant.SERVICE_NAME}")
+                            Notification.sendNotification(script.currentBuild.result)
                         } else if (deployChoice == 'No') {
                             script.currentBuild.result = "ABORTED"
                             script.error "Lead aborted this job"
+                            Notification.sendNotification(script.currentBuild.result)
                         } else {
                             throw new IllegalArgumentException("Invalid input: ${deployChoice}")
                         }
@@ -41,7 +43,8 @@ public class UATDeployment extends AbstractStage {
             }
         } catch (Exception e) {
             script.currentBuild.result = "FAILURE"
-            script.error "Build failed: ${e.toString()}"
+            Notification.sendNotification(script.currentBuild.result)
         }
     }
 }
+
