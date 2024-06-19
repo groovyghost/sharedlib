@@ -105,7 +105,7 @@ class Pipeline implements Serializable {
 
   // hipchatSend (color: color, notify: true, message: summary)
 
-  emailext (
+  script.emailext (
       to: 'rahul.a@contus.in, rahula7200@gamil.com',
       subject: subject,
       body: details,
