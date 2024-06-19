@@ -1,4 +1,4 @@
-package com.pipeline.cicd.stages
+package com.pipeline.cicd.stages.UAT
 
 import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.JenkinsHelper
