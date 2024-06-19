@@ -3,7 +3,7 @@
 /**
  * Send notifications based on build status string
  */
-def call(String buildStatus = 'STARTED') {
+def SendNotifacation(String buildStatus = 'STARTED') {
   // build status of null means successful
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
 
@@ -25,12 +25,12 @@ def call(String buildStatus = 'STARTED') {
   }
 
   // Send notifications
-  slackSend (color: colorCode, message: summary)
+  // slackSend (color: colorCode, message: summary)
 
-  hipchatSend (color: color, notify: true, message: summary)
+  // hipchatSend (color: color, notify: true, message: summary)
 
   emailext (
-      to: 'bitwiseman@bitwiseman.com',
+      to: 'rahul.a@contus.in, rahula7200@gamil.com',
       subject: subject,
       body: details,
       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
