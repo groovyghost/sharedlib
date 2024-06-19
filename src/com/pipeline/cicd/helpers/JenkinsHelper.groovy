@@ -31,6 +31,17 @@ class JenkinsHelper implements Serializable {
 				environment.toUpperCase() + " server.").replace("%SUB_CONTENT%", "<br/>Pipeline URL: " +
 				"${script.env.JOB_URL}").replace("%TEAM%", "Build Team.");
 	}
+    
+    void sendNotification() {
+        String emailContent = getEmailContent("Staging")
+        script.mail(
+            from: 'rahul.a@contus.in',
+            to: 'rahula7200@gmail.com',
+            cc: 'rahul.a@contus.in',
+            subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + '$BUILD_STATUS',
+            body: emailContent
+        )
+    }
 }
     // void sendMail(String status, String from, String to, String cc, String subject, String body) {
     //     script.mail(
