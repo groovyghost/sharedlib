@@ -27,7 +27,7 @@ class JenkinsHelper implements Serializable {
 	}
 
 	String getEmailContent(def environment) {
-		convertHTMLToString("templates/email_template.html").replace("%MAIN_CONTENT%", "The Build is Deployed in the " +
+		convertHTMLToString("resources/templates/email_template.html").replace("%MAIN_CONTENT%", "The Build is Deployed in the " +
 				environment.toUpperCase() + " server.").replace("%SUB_CONTENT%", "<br/>Pipeline URL: " +
 				"${script.env.JOB_URL}").replace("%TEAM%", "Build Team.");
 	}
