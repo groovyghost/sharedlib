@@ -21,6 +21,17 @@ class JenkinsHelper implements Serializable {
         return destinationPath
     }
 
+    String convertHTMLToString(def filename) {
+		def emailContent = script.readFile encoding: 'UTF-8', file: "${filename}"
+		return emailContent;
+	}
+
+	String getEmailContent(def environment) {
+		convertHTMLToString("templates/email_template.html").replace("%MAIN_CONTENT%", "The Build is Deployed in the " +
+				environment.toUpperCase() + " server.").replace("%SUB_CONTENT%", "<br/>Pipeline URL: " +
+				"${script.env.JOB_URL}").replace("%TEAM%", "Build Team.");
+	}
+}
     // void sendMail(String status, String from, String to, String cc, String subject, String body) {
     //     script.mail(
     //         from: from,
@@ -30,4 +41,3 @@ class JenkinsHelper implements Serializable {
     //         body: body
     //     )
     // }
-}

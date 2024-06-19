@@ -9,3 +9,5 @@
 # update new image tag in values.yaml
 # helm upgrade 
 # kubectl rollout status
+
+echo "Not implemented yet"

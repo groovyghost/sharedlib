@@ -44,13 +44,13 @@ class Pipeline implements Serializable {
             return this
         }
 
-        def withBuildStage() {
-            stages << new Build(script, jenkinsHelper)
+        def withUATBuildStage() {
+            stages << new UATBuild(script, jenkinsHelper)
             return this
         }
 
-        def withDeploymentStage() {
-            stages << new Deployment(script, jenkinsHelper)
+        def withUATDeploymentStage() {
+            stages << new UATDeployment(script, jenkinsHelper)
             return this
         }
 
@@ -64,11 +64,11 @@ class Pipeline implements Serializable {
         }
 
         def PipelineBuild() {
-            if (PROJECT_REPO_BRANCH.toLowerCase() == "feature/v1"){
+            withPreparationStage()
+            if (PROJECT_REPO_BRANCH.toLowerCase() == "staging"){
                 Constant.NODE = "agent2"
-                withPreparationStage()
-                withBuildStage()
-                withDeploymentStage()
+                withUATBuildStage()
+                withUATDeploymentStage()
                 // withNotificationStage()
                 withCleanupStage()
             }

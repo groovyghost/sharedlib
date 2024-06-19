@@ -4,10 +4,10 @@ import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.JenkinsHelper
 import com.pipeline.cicd.helpers.BuildProperties
 
-public class Build extends AbstractStage {
+public class UATBuild extends AbstractStage {
 
-    Build(Object script, JenkinsHelper jenkinsHelper) {
-        super(script, 'Build', jenkinsHelper)
+    UATBuild(Object script, JenkinsHelper jenkinsHelper) {
+        super(script, 'DockerBuild', jenkinsHelper)
     }
 
     @Override
@@ -19,7 +19,12 @@ public class Build extends AbstractStage {
                 }
                 def properties = new BuildProperties(script)
                 properties.readBuildProperties()
-                script.sh "docker build -t ${Constant.SERVICE_NAME} . --no-cache"
+                if (Constant.SERVICE_NAME.equals('webchat') || Constant.SERVICE_NAME.equals('signalservice')) {
+                    def envvariable = 'uat';
+                    script.sh "docker build --build-arg ENVIRONMENT=${envvariable} -t ${Constant.SERVICE_NAME} . --no-cache"
+                } else {
+                    script.sh "docker build -t ${Constant.SERVICE_NAME} . --no-cache"
+                }
             }
         }
     }

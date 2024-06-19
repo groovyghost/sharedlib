@@ -26,4 +26,3 @@ public class Preparation extends AbstractStage {
         }
     }
 }
-

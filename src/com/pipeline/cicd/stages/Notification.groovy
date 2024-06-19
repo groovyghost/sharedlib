@@ -13,14 +13,25 @@ public class Notification extends AbstractStage {
     void execute() {
         script.stage(stageName) {
             script.node(Constant.NODE) {
-                String scriptPath = jenkinsHelper.copyGlobalLibraryScript('test.sh')
-                script.sh("bash ${scriptPath} ${script.env.BRANCH_NAME} working")
-                // if(script.currentBuild.result == "SUCCESS"){
-                //     jenkinsHelper.sendMail('Success', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
-                // }
-                // else(script.currentBuild.result == "FAILURE"){
-                //     jenkinsHelper.sendMail('Failed', 'rahul.a@contus.in', 'Jenkins', 'Test subject', 'rahula7200@gmail.com')
-                // }
+
+                if(script.currentBuild.result == "SUCCESS"){
+                    script.mail(
+                        from: 'rahul.a@contus.in',
+                        to: 'rahula7200@gmail.com',
+                        cc: 'rahul.a@contus.in',
+                        subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' +'$BUILD_STATUS',
+                        body: jenkinsHelper.getEmailContent("Staging")
+                        )
+                }
+
+                else(script.currentBuild.result == "FAILURE"){
+                    script.mail(
+                        from: 'rahul.a@contus.in',
+                        to: 'rahula7200@gmail.com',
+                        cc: 'rahul.a@contus.in',
+                        subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' +'$BUILD_STATUS',
+                        body: jenkinsHelper.getEmailContent("Staging")
+                        )
                 }
             }
         }
