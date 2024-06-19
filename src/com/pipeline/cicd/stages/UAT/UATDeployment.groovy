@@ -20,18 +20,17 @@ public class UATDeployment extends AbstractStage {
                     def buildProperties = new BuildProperties(script)
                     buildProperties.readBuildProperties()
                     if (deployChoice == 'Yes') {
-                        //script.withEnv(["BRANCH_NAME=${script.env.BRANCH_NAME}","MYENV=rahul"]){}
                         String scriptPath = jenkinsHelper.copyGlobalLibraryScript("deploy-docker.sh")
                         script.sh("bash ${scriptPath} ${Constant.SERVICE_NAME}")
-                        }
                     } else if (deployChoice == 'No'){
                         script.currentBuild.result = "ABORTED"
                         script.error "Lead aborted this job"
                     } else {
                         script.error "Invalid input"
-                }
+                    }
             }
         }
     }
 }
+//script.withEnv(["BRANCH_NAME=${script.env.BRANCH_NAME}","MYENV=rahul"]){}
 
