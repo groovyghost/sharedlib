@@ -23,10 +23,8 @@ public class UATBuild extends AbstractStage {
                 if (Constant.SERVICE_NAME.equals('webchat') || Constant.SERVICE_NAME.equals('signalservice')) {
                     def envvariable = 'uat';
                     script.sh "docker build --build-arg ENVIRONMENT=${envvariable} -t ${Constant.SERVICE_NAME} . --no-cache"
-                    Notification.sendNotification(script.currentBuild.result)
                 } else {
                     script.sh "docker build -t ${Constant.SERVICE_NAME} . --no-cache"
-                    Notification.sendNotification(script.currentBuild.result)
                 }
             }
         }

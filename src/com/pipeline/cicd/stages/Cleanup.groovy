@@ -13,6 +13,11 @@ public class Cleanup extends AbstractStage {
     void execute() {
             script.stage(stageName) {
                 script.node(Constant.NODE) {
+                script.post{
+                    failure{
+                        script.echo(message: 'Cleanup stage failed')
+                    }
+                }
                 script.cleanWs(
                         cleanWhenSuccess: true,
                         cleanWhenFailure: false,
