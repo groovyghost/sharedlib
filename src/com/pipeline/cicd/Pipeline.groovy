@@ -55,10 +55,6 @@ class Pipeline implements Serializable {
             return this
         }
 
-        def withNotificationStage() {
-            stages << new Notification(script, jenkinsHelper)
-            return this
-        }
         def withCleanupStage() {
             stages << new Cleanup(script, jenkinsHelper)
             return this
@@ -70,7 +66,6 @@ class Pipeline implements Serializable {
                 Constant.NODE = "agent2"
                 withUATBuildStage()
                 withUATDeploymentStage()
-                // withNotificationStage()
                 withCleanupStage()
             }
             return new Pipeline(this)
