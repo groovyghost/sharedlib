@@ -83,13 +83,11 @@ class Pipeline implements Serializable {
         for (Stage stage : stages) {
             try {
                 stage.execute()
-                post{
-                    failure{
-                        script.echo(message: 'Cleanup stage failed')
-                    }
-                }
             } catch (err) {
                 new Exception(script).handle(err)
+                println 'error'
+            } finally {
+                println 'finally'
             }
         }
     }
