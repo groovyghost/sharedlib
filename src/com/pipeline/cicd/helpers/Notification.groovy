@@ -1,11 +1,12 @@
+package com.pipeline.cicd.helpers
+
+
 class Notification implements Serializable {
 
-    private def script
-    private JenkinsHelper jenkinsHelper
+    private final script
 
-    Notification(script, JenkinsHelper jenkinsHelper) {
+    JenkinsHelper(script) {
         this.script = script
-        this.jenkinsHelper = jenkinsHelper
     }
 
     private void sendNotification(String status) {
