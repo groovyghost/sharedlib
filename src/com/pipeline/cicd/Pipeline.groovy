@@ -16,7 +16,6 @@ class Pipeline implements Serializable {
 
     DSL steps
 
-    def Notification
 
     JenkinsHelper jenkinsHelper
 
@@ -87,10 +86,10 @@ class Pipeline implements Serializable {
             try {
                 stage.execute()
                 script.currentBuild.result = 'SUCCESS'
-                Notification.sendNotification(script.currentBuild.result)
+                Notification.sendNotification()
             } catch (err) {
                 script.currentBuild.result = 'FAILURE'
-                Notification.sendNotification(script.currentBuild.result)
+                Notification.sendNotification()
                 throw err
                 // new Exception(script).handle(err)
             }

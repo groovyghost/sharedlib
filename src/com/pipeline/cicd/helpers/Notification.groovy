@@ -10,13 +10,13 @@ class Notification implements Serializable {
         this.script = script
     }
 
-    private void sendNotification(status) {
+    private void sendNotification() {
         String emailContent = jenkinsHelper.getEmailContent("Staging")
         script.mail(
             from: 'rahul.a@contus.in',
             to: 'rahula7200@gmail.com',
             cc: 'rahul.a@contus.in',
-            subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + status,
+            subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + '$BUILD_STATUS',
             body: emailContent
         )
     }
