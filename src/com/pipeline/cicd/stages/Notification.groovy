@@ -14,24 +14,26 @@ public class Notification extends AbstractStage {
         script.stage(stageName) {
             script.node(Constant.NODE) {
 
-                if(script.currentBuild.result == "SUCCESS"){
-                    script.mail(
-                        from: 'rahul.a@contus.in',
-                        to: 'rahula7200@gmail.com',
-                        cc: 'rahul.a@contus.in',
-                        subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' +'$BUILD_STATUS',
-                        body: jenkinsHelper.getEmailContent("Staging")
+                String buildStatus = script.currentBuild.result
+                if(buildStatus != null) {
+                    String emailContent = jenkinsHelper.getEmailContent("Staging")
+                    if(buildStatus == "SUCCESS") {
+                        script.mail(
+                            from: 'rahul.a@contus.in',
+                            to: 'rahula7200@gmail.com',
+                            cc: 'rahul.a@contus.in',
+                            subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + buildStatus,
+                            body: emailContent
                         )
-                }
-
-                else(script.currentBuild.result == "FAILURE"){
-                    script.mail(
-                        from: 'rahul.a@contus.in',
-                        to: 'rahula7200@gmail.com',
-                        cc: 'rahul.a@contus.in',
-                        subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' +'$BUILD_STATUS',
-                        body: jenkinsHelper.getEmailContent("Staging")
+                    } else {
+                        script.mail(
+                            from: 'rahul.a@contus.in',
+                            to: 'rahula7200@gmail.com',
+                            cc: 'rahul.a@contus.in',
+                            subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + buildStatus,
+                            body: emailContent
                         )
+                    }
                 }
             }
         }
