@@ -26,6 +26,8 @@ public class UATBuild extends AbstractStage {
                 } else {
                     script.sh "docker build -t ${Constant.SERVICE_NAME} . --no-cache"
                 }
+                Notification.sendNotification(script.currentBuild.result)
+
             }
         }
     }
