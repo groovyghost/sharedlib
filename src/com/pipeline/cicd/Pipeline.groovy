@@ -84,7 +84,7 @@ class Pipeline implements Serializable {
             try {
                 stage.execute()
             } catch (err) {
-                new Exception(script).handle(err)
+                // new Exception(script).handle(err)
                 println 'error'
             } finally {
                 println 'finally'
