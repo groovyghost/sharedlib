@@ -105,19 +105,26 @@ class Pipeline implements Serializable {
 
   // hipchatSend (color: color, notify: true, message: summary)
 
-  script.mail(
-      from: 'rahul.a@contus.in',
-      to: 'rahul.a@contus.in, rahula7200@gamil.com',
-      subject: subject,
-      body: details,
-    //   recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-    )
+//   script.mail(
+//       from: 'rahul.a@contus.in',
+//       to: 'rahul.a@contus.in, rahula7200@gamil.com',
+//       subject: subject,
+//       body: details,
+//       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+//     )
+        String emailContent = jenkinsHelper.getEmailContent("Staging")
+        script.mail(
+            from: 'rahul.a@contus.in',
+            to: 'rahula7200@gmail.com',
+            cc: 'rahul.a@contus.in',
+            subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + '$BUILD_STATUS',
+            body: emailContent
+        )
 }
     void execute() {
         for (Stage stage : stages) {
             try {
                 stage.execute()
-                SendNotification script.currentBuild.result
                 // jenkinsHelper.sendNotification()
             } catch (err) {
                 // jenkinsHelper.sendNotification()
