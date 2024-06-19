@@ -1,6 +1,6 @@
 package com.pipeline.cicd.helpers
 
-import com.pipeline.cicd.JenkinsHelper
+import com.pipeline.cicd.helpers.JenkinsHelper
 
 class Notification implements Serializable {
 
