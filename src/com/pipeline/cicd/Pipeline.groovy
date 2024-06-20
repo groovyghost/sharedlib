@@ -118,7 +118,8 @@ class Pipeline implements Serializable {
             to: 'rahula7200@gmail.com',
             cc: 'rahul.a@contus.in',
             subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + '$BUILD_STATUS',
-            body: emailContent
+            body: emailContent,
+            mimeType: 'text/html'
         )
 }
     void execute() {
