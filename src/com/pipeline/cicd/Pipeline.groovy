@@ -127,7 +127,7 @@ class Pipeline implements Serializable {
         for (Stage stage : stages) {
             try {
                 stage.execute()
-                echo 'This will run only if successful'
+                script.echo('This will run only if successful')
                 // jenkinsHelper.sendNotification()
             } catch (err) {
                 // jenkinsHelper.sendNotification()
