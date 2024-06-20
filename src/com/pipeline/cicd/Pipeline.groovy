@@ -112,16 +112,19 @@ class Pipeline implements Serializable {
 //       body: details,
 //       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 //     )
-        String emailContent = jenkinsHelper.getEmailContent("Staging")
-        script.echo emailContent
-        script.mail(
-            from: 'rahul.a@contus.in',
-            to: 'rahula7200@gmail.com',
-            cc: 'rahul.a@contus.in',
-            subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + '$BUILD_STATUS',
-            body: 'hi',
-            mimeType: 'text/html'
-        )
+        // String emailContent = jenkinsHelper.getEmailContent("Staging")
+        // script.echo emailContent
+        script.emailext(body: 'Test Message',
+                        subject: 'Test Subject',
+                        to: 'rahula7200@gmail.com')
+        // script.mail(
+        //     from: 'rahul.a@contus.in',
+        //     to: 'rahula7200@gmail.com',
+        //     cc: 'rahul.a@contus.in',
+        //     subject: '🔵 $PROJECT_NAME - Build # $BUILD_NUMBER - ' + '$BUILD_STATUS',
+        //     body: 'hi',
+        //     mimeType: 'text/html'
+        // )
 }
     void execute() {
         for (Stage stage : stages) {
