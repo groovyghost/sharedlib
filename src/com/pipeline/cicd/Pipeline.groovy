@@ -112,7 +112,8 @@ class Pipeline implements Serializable {
 //       body: details,
 //       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 //     )
-        //String emailContent = jenkinsHelper.getEmailContent("Staging")
+        String emailContent = jenkinsHelper.getEmailContent("Staging")
+        script.echo emailContent
         script.mail(
             from: 'rahul.a@contus.in',
             to: 'rahula7200@gmail.com',
@@ -126,10 +127,11 @@ class Pipeline implements Serializable {
         for (Stage stage : stages) {
             try {
                 stage.execute()
+                echo 'This will run only if successful'
                 // jenkinsHelper.sendNotification()
             } catch (err) {
                 // jenkinsHelper.sendNotification()
-                SendNotification(script.currentBuild.result)
+                //SendNotification(script.currentBuild.result)
                 throw err
                 // new Exception(script).handle(err)
             }
