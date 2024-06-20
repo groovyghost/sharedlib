@@ -22,12 +22,12 @@ class JenkinsHelper implements Serializable {
     }
 
     String convertHTMLToString(def filename) {
-		def emailContent = script.readFile encoding: 'UTF-8', file: "${filename}"
+		def emailContent = script.readFile encoding: 'UTF-8', file: script.libraryResource(filename)
 		return emailContent;
 	}
 
 	String getEmailContent(def environment) {
-		convertHTMLToString("resources/templates/email_template.html").replace("%MAIN_CONTENT%", "The Build is Deployed in the " +
+		convertHTMLToString("templates/email_template.html").replace("%MAIN_CONTENT%", "The Build is Deployed in the " +
 				environment.toUpperCase() + " server.").replace("%SUB_CONTENT%", "<br/>Pipeline URL: " +
 				"${script.env.JOB_URL}").replace("%TEAM%", "Build Team.");
 	}
