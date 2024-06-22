@@ -2,11 +2,11 @@ package com.pipeline.cicd.helpers
 
 import com.pipeline.cicd.Constant
 
-class MailNotification implements Serializable {
+class Notification implements Serializable {
 
     def script
 
-    MailNotification(Object script) {
+    Notification(Object script) {
         this.script = script
     }
 

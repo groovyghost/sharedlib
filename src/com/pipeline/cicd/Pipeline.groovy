@@ -55,7 +55,7 @@ class Pipeline implements Serializable {
         } finally {
             // Always execute notification logic, even if there was an error
             if (caughtError != null) {
-                JenkinsHelper.mailNotification(caughtError)
+                Notification.sendMailNotification(caughtError)
             }
         }
     }
