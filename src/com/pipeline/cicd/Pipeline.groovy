@@ -3,7 +3,6 @@ package com.pipeline.cicd
 import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.Exception
 import com.pipeline.cicd.helpers.JenkinsHelper
-import com.pipeline.cicd.helpers.MailNotification
 import com.pipeline.cicd.stages.*
 import org.jenkinsci.plugins.workflow.cps.DSL
 
