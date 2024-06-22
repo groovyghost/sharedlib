@@ -54,6 +54,7 @@ class Pipeline implements Serializable {
             // Handle error as needed (e.g., logging)
             script.echo "Caught an error: ${err.message}"
         } finally {
+            script.echo"in final function"
                 Notification.sendMailNotification()
 
             // Always execute notification logic, even if there was an error
