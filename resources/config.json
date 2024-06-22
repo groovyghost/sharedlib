@@ -1,0 +1,21 @@
+[
+  "contactservice",
+  "ejabberd",
+  "enkripadminservice",
+  "enkripcommentservice",
+  "enkripcontactservice",
+  "enkripfeedservice",
+  "enkripgatewayservice",
+  "enkriplikeservice",
+  "enkripmediaservice",
+  "enkrippostservice",
+  "enkripuserservice",
+  "gatewayservice",
+  "mediaservice",
+  "notificationservice",
+  "signalservice",
+  "userservice",
+  "webadmin",
+  "webchat",
+  "xmppservice"
+]
