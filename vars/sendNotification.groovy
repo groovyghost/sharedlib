@@ -1,4 +1,4 @@
-def call(script, String buildStatus = 'STARTED', String recipient, emailcontent) {
+def call(script, String buildStatus = 'STARTED', String recipient, String emailcontent) {
   // build status of null means successful
   buildStatus = buildStatus ?: 'SUCCESS'
 
