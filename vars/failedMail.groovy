@@ -1,4 +1,4 @@
-def call(Map params = [:]) {
+def call() {
     def script = this
     def templateContent = readFile(params.templatePath).trim()
     
