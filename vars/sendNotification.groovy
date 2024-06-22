@@ -1,4 +1,4 @@
-def call(script, String buildStatus = 'STARTED', String recipient, String emailcontent) {
+def call(script, String buildStatus = 'STARTED', String recipient) {
   // build status of null means successful
   buildStatus = buildStatus ?: 'SUCCESS'
 
@@ -22,8 +22,6 @@ def call(script, String buildStatus = 'STARTED', String recipient, String emailc
     colorCode = '#FF0000'
   }
 
-
-  script.echo "${emailcontent}"
   script.emailext (
       to: recipient,
       subject: subject,
