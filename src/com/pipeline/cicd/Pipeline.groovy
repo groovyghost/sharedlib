@@ -55,13 +55,7 @@ class Pipeline implements Serializable {
             script.echo "Caught an error: ${err.message}"
         } finally {
             script.echo"in final function"
-            script.emailext(
-            to: Constant.OPS_MAIL,
-            subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
-            body: MailNotification.getEmailContent(),
-            recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
-        )
-
+            script.echo "${script.currentBuild.result}"
             // Always execute notification logic, even if there was an error
             // if (caughtError != null) {
             //     Notification.sendMailNotification(caughtError)
