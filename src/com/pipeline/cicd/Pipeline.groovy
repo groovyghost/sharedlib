@@ -4,6 +4,8 @@ import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.Exception
 import com.pipeline.cicd.helpers.JenkinsHelper
 import com.pipeline.cicd.stages.Stage
+import com.pipeline.cicd.stages.Stage.Preparation
+import com.pipeline.cicd.stages.Stage.Cleanup
 import org.jenkinsci.plugins.workflow.cps.DSL
 
 class Pipeline implements Serializable {
