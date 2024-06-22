@@ -1,5 +1,4 @@
-def call() {
-    def script = this
+def call(script) {
     def templateContent = readFile('resources/email_template.html').trim()
     
     def emailContent = templateContent.replaceAll('\\$\\{subject\\}', "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}")
