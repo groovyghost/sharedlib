@@ -56,7 +56,7 @@ class Pipeline implements Serializable {
         } finally {
             // Always execute notification logic, even if there was an error
             if (caughtError != null) {
-                failedMail()
+                sendNotification(caughtError)
             }
         }
     }
