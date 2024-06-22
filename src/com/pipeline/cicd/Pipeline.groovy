@@ -50,8 +50,8 @@ class Pipeline implements Serializable {
         } catch (Exception error) {
             new Exception(script).handle(error)
         } finally {
-            script.echo script.currentBuild.result
-            sendNotifications()
+        script.echo "${script.currentBuild.result}"
+            script.sendNotifications(script.currentBuild.result)
         }
     }
 
