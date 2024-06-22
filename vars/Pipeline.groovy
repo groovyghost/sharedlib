@@ -1,5 +1,6 @@
 package com.pipeline.cicd
 
+import hudson.model.*
 class PipelineBuild implements Serializable {
 
     def execute() {
