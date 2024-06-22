@@ -24,7 +24,7 @@ def call(script, String buildStatus = 'STARTED') {
 
 
   script.emailext (
-      to: 'rahula7200@gmail.com', ,
+      to: 'rahula7200@gmail.com',
       subject: subject,
       body: details,
       recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
