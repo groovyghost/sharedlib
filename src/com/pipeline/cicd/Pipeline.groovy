@@ -49,8 +49,6 @@ class Pipeline implements Serializable {
             }
         } catch (Throwable err) {
             new Exception(script).handle(err)
-            // Handle error as needed (e.g., logging)
-            script.echo "Caught an error: ${err.message}"
         } finally {
             script.sendNotification(script, script.currentBuild.result)
         }
