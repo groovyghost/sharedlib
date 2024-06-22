@@ -61,24 +61,24 @@ class Pipeline implements Serializable {
         }
     }
     private void sendSuccessNotification() {
-        script.sendNotification(
+        script.sendNotification([
             to: 'rahula7200@gmail.com',
             subject: "Pipeline Succeeded: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
             jobName: script.env.JOB_NAME,
             buildNumber: script.env.BUILD_NUMBER,
             content: "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} succeeded.",
             buildUrl: script.env.BUILD_URL
-        )
+        ])
     }
 
     private void sendErrorNotification(Throwable err) {
-        script.sendNotification(
+        script.sendNotification([
             to: 'rahula7200@gmail.com',
             subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
             jobName: script.env.JOB_NAME,
             buildNumber: script.env.BUILD_NUMBER,
             content: "Error: ${err.message}",
             buildUrl: script.env.BUILD_URL
-        )
+        ])
     }
 }
