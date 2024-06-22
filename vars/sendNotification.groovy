@@ -1,4 +1,4 @@
-def call(script, String buildStatus = 'STARTED') {
+def call(script, String buildStatus = 'STARTED', String recipient) {
   // build status of null means successful
   buildStatus = buildStatus ?: 'SUCCESS'
 
@@ -24,7 +24,7 @@ def call(script, String buildStatus = 'STARTED') {
 
 
   script.emailext (
-      to: 'rahula7200@gmail.com',
+      to: recipient,
       subject: subject,
       body: details,
       recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
