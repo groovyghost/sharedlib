@@ -20,6 +20,7 @@ public class Cleanup extends AbstractStage {
                         cleanWhenNotBuilt: true,
                         deleteDirs: true
                 )
+                script.error 'Simulated error for testing notifications'
             }
         }
     }
