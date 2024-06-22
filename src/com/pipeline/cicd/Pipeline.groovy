@@ -24,13 +24,13 @@ class Pipeline implements Serializable {
 
     static class Builder implements Serializable {
 
-        // def stages = []
+        def stages = []
 
-        // def script
+        def script
 
-        // DSL steps
+        DSL steps
 
-        // JenkinsHelper jenkinsHelper
+        JenkinsHelper jenkinsHelper
 
         def PROJECT_REPO_BRANCH;
 
