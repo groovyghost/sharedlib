@@ -58,7 +58,7 @@ class Pipeline implements Serializable {
             script.emailext(
             to: Constant.OPS_MAIL,
             subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
-            body: Notificaton.getEmailContent(),
+            body: MailNotification.getEmailContent(),
             recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
         )
 
