@@ -9,18 +9,18 @@ import org.jenkinsci.plugins.workflow.cps.DSL
 
 class Pipeline implements Serializable {
 
-    def script
+    // def script
 
-    def stages = []
+    // def stages = []
 
-    DSL steps
+    // DSL steps
 
 
-    JenkinsHelper jenkinsHelper
+    // JenkinsHelper jenkinsHelper
 
-    static builder(script, DSL steps) {
-        return new Builder(script, steps)
-    }
+    // static builder(script, DSL steps) {
+    //     return new Builder(script, steps)
+    // }
 
     static class Builder implements Serializable {
 
