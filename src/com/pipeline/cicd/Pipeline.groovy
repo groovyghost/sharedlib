@@ -4,6 +4,7 @@ import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.Exception
 import com.pipeline.cicd.helpers.JenkinsHelper
 import com.pipeline.cicd.stages.*
+import com.pipeline.cicd.stages.UAT.*
 import org.jenkinsci.plugins.workflow.cps.DSL
 
 class Pipeline implements Serializable {
@@ -67,8 +68,6 @@ class Pipeline implements Serializable {
         this.jenkinsHelper = builder.jenkinsHelper
     }
 
-}
-
     void execute() {
         for (Stage stage : stages) {
             try {
@@ -79,4 +78,5 @@ class Pipeline implements Serializable {
             }
         }
     }
+}
 
