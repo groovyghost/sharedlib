@@ -43,24 +43,15 @@ class Pipeline implements Serializable {
     }
 
     void execute() {
-        Throwable caughtError = null
         try {
             for (Stage stage : stages) {
                 stage.execute()
             }
-        } catch (Throwable err) {
-            caughtError = err
-            new Exception(script).handle(err)
-            // Handle error as needed (e.g., logging)
-            script.echo "Caught an error: ${err.message}"
+        } catch (Exception error) {
+            new Exception(script).handle(error)
         } finally {
-            script.echo"in final function"
-            script.echo "${script.currentBuild.result}"
+            script.echo script.currentBuild.result
             sendNotifications(script.currentBuild.result)
-            // Always execute notification logic, even if there was an error
-            // if (caughtError != null) {
-            //     Notification.sendMailNotification(caughtError)
-            // }
         }
     }
 
