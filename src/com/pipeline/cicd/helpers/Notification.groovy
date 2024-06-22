@@ -4,7 +4,7 @@ import com.pipeline.cicd.Constant
 
 class Notification implements Serializable {
 
-    def script
+    private final script
 
     Notification(Object script) {
         this.script = script
