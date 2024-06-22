@@ -23,7 +23,7 @@ class Notification implements Serializable {
                 .replace('${buildUrl}', script.env.BUILD_URL);
     }
 
-    def sendMailNotification() {
+    void sendMailNotification() {
         script.echo(getEmailContent())
         script.emailext(
             to: Constant.OPS_MAIL,
