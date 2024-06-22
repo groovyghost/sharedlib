@@ -47,7 +47,6 @@ class Pipeline implements Serializable {
             for (Stage stage : stages) {
                 stage.execute()
             }
-            // sendSuccessNotification()
         } catch (Throwable err) {
             caughtError = err
             new Exception(script).handle(err)
@@ -56,7 +55,7 @@ class Pipeline implements Serializable {
         } finally {
             // Always execute notification logic, even if there was an error
             if (caughtError != null) {
-                sendNotification(caughtError)
+                script.sendNotification(script, caughtError)
             }
         }
     }
