@@ -2,11 +2,11 @@ package com.pipeline.cicd.helpers
 
 import com.pipeline.cicd.Constant
 
-class Notification implements Serializable {
+class MailNotification implements Serializable {
 
     private final script
 
-    Notification(Object script) {
+    MailNotification(Object script) {
         this.script = script
     }
     String convertHTMLToString(def filename) {
