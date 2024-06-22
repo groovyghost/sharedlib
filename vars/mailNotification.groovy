@@ -1,7 +1,7 @@
 // vars/sendNotification.groovy
 
 def call(script, Throwable err) {
-        def templateContent = readFile('resources/email_template.html').trim()
+    def templateContent = JenkinsHelper.getEmailTemplate()
     
     def emailContent = templateContent.replaceAll('\\$\\{subject\\}', "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}")
                                       .replaceAll('\\$\\{jobName\\}', script.env.JOB_NAME)

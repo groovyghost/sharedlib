@@ -32,6 +32,11 @@ class JenkinsHelper implements Serializable {
 				"${script.env.JOB_URL}").replace("%TEAM%", "Build Team.");
 	}
     
+    def static getEmailTemplate() {
+        def templatePath = libraryResource 'email_template.html'
+        return new File(templatePath).text
+    }
+    
     // void sendNotification() {
     //     String emailContent = getEmailContent("Staging")
     //     script.mail(
