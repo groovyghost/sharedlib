@@ -25,12 +25,13 @@ class JenkinsHelper implements Serializable {
 		return emailContent;
 	}
 
-    String getEmailContent() {
+    String getEmailContent(def url) {
 		convertHTMLToString("email_template.html")
                 .replace('${subject}', "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}")
                 .replace('${jobName}', script.env.JOB_NAME)
                 .replace('${buildNumber}', script.env.BUILD_NUMBER)
                 .replace('${content}', "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} failed.")
                 .replace('${buildUrl}', script.env.BUILD_URL);
+        
     }
 }
