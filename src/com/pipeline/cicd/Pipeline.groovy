@@ -47,7 +47,7 @@ class Pipeline implements Serializable {
             for (Stage stage : stages) {
                 stage.execute()
             }
-            sendSuccessNotification()
+            // sendSuccessNotification()
         } catch (Throwable err) {
             caughtError = err
             new Exception(script).handle(err)
@@ -56,29 +56,9 @@ class Pipeline implements Serializable {
         } finally {
             // Always execute notification logic, even if there was an error
             if (caughtError != null) {
-                sendErrorNotification(caughtError)
+                failedMail()
             }
         }
     }
-    private void sendSuccessNotification() {
-        script.sendEmail([
-            to: 'rahula7200@gmail.com',
-            subject: "Pipeline Succeeded: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
-            jobName: script.env.JOB_NAME,
-            buildNumber: script.env.BUILD_NUMBER,
-            content: "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} succeeded.",
-            buildUrl: script.env.BUILD_URL
-        ])
-    }
 
-    private void sendErrorNotification(Throwable err) {
-        script.sendEmail([
-            to: 'rahula7200@gmail.com',
-            subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
-            jobName: script.env.JOB_NAME,
-            buildNumber: script.env.BUILD_NUMBER,
-            content: "Error: ${err.message}",
-            buildUrl: script.env.BUILD_URL
-        ])
-    }
 }
