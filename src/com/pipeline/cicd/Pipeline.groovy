@@ -69,6 +69,7 @@ class Pipeline implements Serializable {
     }
 
 }
+
     void execute() {
         for (Stage stage : stages) {
             try {
@@ -79,5 +80,4 @@ class Pipeline implements Serializable {
             }
         }
     }
-}
 
