@@ -23,7 +23,7 @@ class Notification implements Serializable {
                 .replace('${buildUrl}', script.env.BUILD_URL);
 	}
 
-    void sendMailNotification() {
+    def sendMailNotification() {
         script.emailext(
             to: Constant.OPS_MAIL,
             subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
