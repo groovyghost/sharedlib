@@ -61,7 +61,7 @@ class Pipeline implements Serializable {
         }
     }
     private void sendSuccessNotification() {
-        script.sendNotification([
+        script.sendEmail([
             to: 'rahula7200@gmail.com',
             subject: "Pipeline Succeeded: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
             jobName: script.env.JOB_NAME,
@@ -72,7 +72,7 @@ class Pipeline implements Serializable {
     }
 
     private void sendErrorNotification(Throwable err) {
-        script.sendNotification([
+        script.sendEmail([
             to: 'rahula7200@gmail.com',
             subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
             jobName: script.env.JOB_NAME,
