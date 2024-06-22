@@ -5,7 +5,7 @@ def call() {
     def emailContent = templateContent.replaceAll('\\$\\{subject\\}', "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}")
                                       .replaceAll('\\$\\{jobName\\}', script.env.JOB_NAME)
                                       .replaceAll('\\$\\{buildNumber\\}', script.env.BUILD_NUMBER)
-                                      .replaceAll('\\$\\{content\\}', params.content)
+                                      .replaceAll('\\$\\{content\\}', "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} succeeded.")
                                       .replaceAll('\\$\\{buildUrl\\}', script.env.BUILD_URL)
 
     script.emailext(
