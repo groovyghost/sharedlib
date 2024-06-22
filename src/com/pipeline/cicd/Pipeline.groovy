@@ -47,12 +47,13 @@ class Pipeline implements Serializable {
             for (Stage stage : stages) {
                 stage.execute()
             }
-        } catch (Exception error) {
-            new Exception(script).handle(error)
+        } catch (Throwable err) {
+            new Exception(script).handle(err)
+            // Handle error as needed (e.g., logging)
+            script.echo "Caught an error: ${err.message}"
         } finally {
-        script.echo "${script.currentBuild.result}"
-            script.sendNotifications(script.currentBuild.result)
+            script.sendNotification(script, script.currentBuild.result)
         }
     }
-
 }
+
