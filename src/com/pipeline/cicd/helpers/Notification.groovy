@@ -1,7 +1,6 @@
 package com.pipeline.cicd.helpers
 
 import com.pipeline.cicd.Constant
-import java.lang.NullPointerException
 
 class Notification implements Serializable {
 
@@ -10,21 +9,13 @@ class Notification implements Serializable {
     Notification(Object script) {
         this.script = script
     }
-
     String convertHTMLToString(def filename) {
-        if (filename == null) {
-            throw new NullPointerException("Filename cannot be null")
-        }
-        def emailContent = script.readFile encoding: 'UTF-8', file: "${filename}"
-        return emailContent;
-    }
+		def emailContent = script.readFile encoding: 'UTF-8', file: "${filename}"
+		return emailContent;
+	}
 
     String getEmailContent() {
-        def emailContent = convertHTMLToString("email_template.html")
-        if (emailContent == null) {
-            throw new NullPointerException("emailContent cannot be null")
-        }
-        return emailContent
+		convertHTMLToString("email_template.html")
                 .replace('${subject}', "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}")
                 .replace('${jobName}', script.env.JOB_NAME)
                 .replace('${buildNumber}', script.env.BUILD_NUMBER)
@@ -33,9 +24,6 @@ class Notification implements Serializable {
     }
 
     def sendMailNotification() {
-        if (Constant.OPS_MAIL == null) {
-            throw new NullPointerException("OPS_MAIL cannot be null")
-        }
         script.emailext(
             to: Constant.OPS_MAIL,
             subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
