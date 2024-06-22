@@ -1,4 +1,5 @@
-def call(script, Map params) {
+def call(Map params) {
+    def script = this
     def template = readFileFromWorkspace('resources/email_template.html').trim()
     
     def emailContent = template.replaceAll('\\$\\{subject\\}', params.subject)
