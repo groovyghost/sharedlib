@@ -47,17 +47,19 @@ class Pipeline implements Serializable {
             for (Stage stage : stages) {
                 stage.execute()
             }
-            // If we reach here, all stages executed successfully
             sendSuccessNotification()
         } catch (Throwable err) {
             caughtError = err
             new Exception(script).handle(err)
             // Handle error as needed (e.g., logging)
             script.echo "Caught an error: ${err.message}"
-            sendErrorNotification(err)
+        } finally {
+            // Always execute notification logic, even if there was an error
+            if (caughtError != null) {
+                sendErrorNotification(caughtError)
+            }
         }
     }
-
     private void sendSuccessNotification() {
         script.sendNotification(
             to: 'successemail@example.com',
