@@ -47,16 +47,36 @@ class Pipeline implements Serializable {
             for (Stage stage : stages) {
                 stage.execute()
             }
+            // If we reach here, all stages executed successfully
+            sendSuccessNotification()
         } catch (Throwable err) {
             caughtError = err
             new Exception(script).handle(err)
             // Handle error as needed (e.g., logging)
             script.echo "Caught an error: ${err.message}"
-        } finally {
-            // Always execute notification logic, even if there was an error
-            if (caughtError != null) {
-                script.sendNotification(script, caughtError)
-            }
+            sendErrorNotification(err)
         }
+    }
+
+    private void sendSuccessNotification() {
+        script.sendNotification(
+            to: 'successemail@example.com',
+            subject: "Pipeline Succeeded: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
+            jobName: script.env.JOB_NAME,
+            buildNumber: script.env.BUILD_NUMBER,
+            content: "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} succeeded.",
+            buildUrl: script.env.BUILD_URL
+        )
+    }
+
+    private void sendErrorNotification(Throwable err) {
+        script.sendNotification(
+            to: 'staticemail@example.com',
+            subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
+            jobName: script.env.JOB_NAME,
+            buildNumber: script.env.BUILD_NUMBER,
+            content: "Error: ${err.message}",
+            buildUrl: script.env.BUILD_URL
+        )
     }
 }
