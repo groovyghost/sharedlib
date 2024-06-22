@@ -24,6 +24,7 @@ class Notification implements Serializable {
     }
 
     def sendMailNotification() {
+        script.echo(getEmailContent())
         script.emailext(
             to: Constant.OPS_MAIL,
             subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
