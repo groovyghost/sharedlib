@@ -56,7 +56,7 @@ class Pipeline implements Serializable {
         } finally {
             script.echo"in final function"
             script.echo "${script.currentBuild.result}"
-            sendNotifications(script.currentBuild.result)
+            sendNotifications(currentBuild.result)
             // Always execute notification logic, even if there was an error
             // if (caughtError != null) {
             //     Notification.sendMailNotification(caughtError)
