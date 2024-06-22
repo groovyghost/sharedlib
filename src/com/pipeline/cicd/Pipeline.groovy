@@ -47,10 +47,11 @@ class Pipeline implements Serializable {
             for (Stage stage : stages) {
                 stage.execute()
             }
+            script.echo JenkinsHelper.getEmailContent("")
         } catch (Throwable err) {
             new Exception(script).handle(err)
         } finally {
-            script.sendNotification(script, script.currentBuild.result, Constant.OPS_MAIL, MailNotification.getEmailContent())
+            script.sendNotification(script, script.currentBuild.result, Constant.OPS_MAIL)
         }
     }
 }
