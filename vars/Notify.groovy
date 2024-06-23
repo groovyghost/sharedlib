@@ -43,13 +43,12 @@ def notifyEmail(script,buildStatus, emailRecipients) {
             "downloadUrl"   :   "www.downloadurl.com"
         ]);
 
-        script.emailext (
+        script.emailext(
             to: emailRecipients,
             subject: "${icon} [ ${env.JOB_NAME} ] [${env.BUILD_NUMBER}] - ${buildStatus} ",
             body: body,
             mimeType: 'text/html',
-            recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
-    )
+            recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']] )
 
     } catch (e){
         println "ERROR SENDING EMAIL ${e}"
