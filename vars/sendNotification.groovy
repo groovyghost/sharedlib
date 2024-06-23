@@ -22,10 +22,18 @@ def call(script, String buildStatus = 'STARTED', String recipient) {
     colorCode = '#FF0000'
   }
 
+variables = [ subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
+              jobName: script.env.JOB_NAME,
+              buildNumber: script.env.BUILD_NUMBER,
+              content: "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} succeeded.",
+              buildUrl: script.env.BUILD_URL
+]
+template = script.libraryResource('email_template.html.groovy')
+report = JenkinsHelper.renderTemplate(template, variables)
   script.emailext (
       to: recipient,
       subject: subject,
-      body: details,
+      body: report,
       recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
     )
 }

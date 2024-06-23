@@ -1,6 +1,8 @@
 package com.pipeline.cicd.helpers
 
 import java.io.File
+import groovy.text.StreamingTemplateEngine
+
 
 class JenkinsHelper implements Serializable {
 
@@ -34,4 +36,10 @@ class JenkinsHelper implements Serializable {
                 .replace('${buildUrl}', script.env.BUILD_URL);
         
     }
+
+def renderTemplate(input, variables) {
+  def engine = new StreamingTemplateEngine()
+  return engine.createTemplate(input).make(variables).toString()
+}
+
 }
