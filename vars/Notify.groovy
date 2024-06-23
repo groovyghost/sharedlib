@@ -47,7 +47,7 @@ def notifyEmail(script,buildStatus, emailRecipients) {
             to: emailRecipients,
             subject: "${icon} [ ${env.JOB_NAME} ] [${env.BUILD_NUMBER}] - ${buildStatus} ",
             body: body,
-            mimeType: 'text/html'
+            mimeType: 'text/html',
             recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']]
     )
 
