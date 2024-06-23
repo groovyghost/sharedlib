@@ -1,7 +1,3 @@
-#!groovy
-
-package workflowlibs.manager;
-
 import groovy.text.StreamingTemplateEngine
 
 /**
@@ -16,13 +12,13 @@ def emailTemplate(params) {
     return engine.createTemplate(fileContents).make(params).toString()
 }
 
-/**
- * This method send an email generated with data from Jenkins
- * @param buildStatus String with job result
- * @param emailRecipients Array with emails: emailRecipients = []
- */
 def call(script,buildStatus, emailRecipients) {
+//  In Jenkins, the currentBuild.result attribute reflects the outcome of the build.
+//  However, until an explicit status is set (such as FAILURE, UNSTABLE, or ABORTED), or until the build finishes, currentBuild.result remains null.
+//  This null state essentially indicates that the build is ongoing and no issues have been detected that would set a failure or unstable status.
+//  If currentBuild.result is still null when the build completes, Jenkins implicitly treats this as a successful build (SUCCESS).
   buildStatus = buildStatus ?: 'SUCCESS'
+
 
     try {
 
