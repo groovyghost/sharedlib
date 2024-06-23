@@ -2,7 +2,6 @@ package com.pipeline.cicd.helpers
 
 import com.pipeline.cicd.Constant
 
-
 class BuildProperties implements Serializable {
 
     def script

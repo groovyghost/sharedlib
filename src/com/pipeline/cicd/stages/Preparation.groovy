@@ -1,7 +1,7 @@
 package com.pipeline.cicd.stages
 
-import com.pipeline.cicd.Constant
 import com.pipeline.cicd.helpers.JenkinsHelper
+import com.pipeline.cicd.Constant
 
 public class Preparation extends AbstractStage {
 

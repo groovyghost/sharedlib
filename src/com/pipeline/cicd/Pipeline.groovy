@@ -12,19 +12,17 @@ class Pipeline implements Serializable {
     def stages = []
     DSL steps
     JenkinsHelper jenkinsHelper
-    def PROJECT_REPO_BRANCH
 
     Pipeline(def script, DSL steps) {
         this.script = script
         this.steps = steps
         this.jenkinsHelper = new JenkinsHelper(script)
-        this.PROJECT_REPO_BRANCH = "${this.script.env.BRANCH_NAME}"
-    }
+   }
 
     static Pipeline PipelineBuild(def script, DSL steps) {
         Pipeline pipeline = new Pipeline(script, steps)
         pipeline.withPreparationStage()
-        if (pipeline.PROJECT_REPO_BRANCH.toLowerCase() == "staging") {
+        if (script.env.BRANCH_NAME.toLowerCase() == "staging") {
             Constant.NODE = "agent2"
             pipeline.withCleanupStage()
         }
@@ -36,7 +34,6 @@ class Pipeline implements Serializable {
         pipeline.withPreparationStage()
         if (script.env.BRANCH_NAME.toLowerCase() == "staging") {
             Constant.NODE = "agent2"
-            script.echo "Running on ${script.env.BRANCH_NAME}"
             pipeline.withCleanupStage()
         }
         return pipeline
