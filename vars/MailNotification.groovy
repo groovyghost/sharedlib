@@ -1,8 +1,5 @@
 import groovy.text.StreamingTemplateEngine
 
-/**
- * This method returns a string with the template filled with groovy variables
- */
 def emailTemplate(params) {
 
     def fileName = "templates/email.html.groovy"
@@ -37,7 +34,7 @@ def call(script,buildStatus, emailRecipients) {
             "jenkinsUrl"    :   script.env.BUILD_URL,
             "statusSuccess" :   statusSuccess,
             "hasArtifacts"  :   hasArtifacts,
-            "downloadUrl"   :   "www.downloadurl.com"
+            "downloadUrl"   :   "example.com",
         ]);
 
         script.emailext(

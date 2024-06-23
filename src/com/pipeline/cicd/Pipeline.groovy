@@ -57,8 +57,7 @@ class Pipeline implements Serializable {
         } catch (Throwable err) {
             new Exception(script).handle(err)
         } finally {
-            // script.sendNotification(script, script.currentBuild.result, Constant.OPS_MAIL, Constant.PROJECT_NAME)
-            script.Notify(script, script.currentBuild.result, Constant.OPS_MAIL)
+            script.MailNotification(script, script.currentBuild.result, Constant.OPS_MAIL)
         }
     }
 }
