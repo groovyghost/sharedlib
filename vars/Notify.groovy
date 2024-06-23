@@ -24,20 +24,20 @@ def call(script,buildStatus, emailRecipients) {
 
         def icon = "✅"
         def statusSuccess = true
-        // def hasArtifacts = false
+        def hasArtifacts = false
 
         if(buildStatus != "SUCCESS") {
             icon = "❌"
             statusSuccess = false
-            // hasArtifacts = false
+            hasArtifacts = false
         }
 
         def body = emailTemplate([
             "jenkinsText"   :   script.env.JOB_NAME,
             "jenkinsUrl"    :   script.env.BUILD_URL,
             "statusSuccess" :   statusSuccess,
-            // "hasArtifacts"  :   hasArtifacts,
-            // "downloadUrl"   :   "www.downloadurl.com"
+            "hasArtifacts"  :   hasArtifacts,
+            "downloadUrl"   :   "www.downloadurl.com"
         ]);
 
         script.emailext(
