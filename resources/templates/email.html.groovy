@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>Jenkins Pipeline Status</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
         body {
@@ -13,8 +13,8 @@
             height: 100vh;
             font-family: sans-serif;
             margin: 0;
-	        padding: 0;
-	        min-width: 100%;    
+            padding: 0;
+            min-width: 100%;
         }
 
         .container {
@@ -114,8 +114,8 @@
         <div class="icon">
             <img id="icon" src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" alt="Jenkins Icon">
         </div>
-        <div id="header" class="header SUCCESS">
-            <span id="header-text"></span>
+        <div id="header" class="${pipelineStatus == 'SUCCESS' ? 'header SUCCESS' : 'header FAILURE'}">
+            <span id="header-text">${pipelineStatus == 'SUCCESS' ? '✔ Your pipeline has succeeded!' : '✖ Your pipeline has failed!'}</span>
         </div>
         <div class="content">
             <table>
@@ -139,29 +139,6 @@
             <p>Jenkins</p>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var pipelineStatus = 'SUCCESS'; // Change this to 'SUCCESS' or 'FAILURE' as needed
-            var headerElement = document.getElementById('header');
-            var iconImg = document.getElementById('icon');
-            var headerTextElement = document.getElementById('header-text');
-            var pipelineUrlElement = document.getElementById('pipeline-footer');
-
-            if (pipelineStatus === 'SUCCESS') {
-                headerElement.classList.remove('FAILURE');
-                headerElement.classList.add('SUCCESS');
-                headerTextElement.textContent = '✔ Your pipeline has succeeded!';
-                iconImg.src = 'https://www.jenkins.io/images/logos/cute/cute.svg';
-                pipelineUrlElement.innerHTML = 'Pipeline #${BUILD_NUMBER} triggered by ${COMMIT_AUTHOR} has been Succeeded.';
-            } else {
-                headerElement.classList.remove('SUCCESS');
-                headerElement.classList.add('FAILURE');
-                headerTextElement.textContent = '✖ Your pipeline has failed!';
-                iconImg.src = 'https://www.jenkins.io/images/logos/fire/fire.svg';
-                pipelineUrlElement.innerHTML = 'Pipeline #${BUILD_NUMBER} triggered by ${COMMIT_AUTHOR} has Failed.';
-            }
-        });
-    </script>
 </body>
 
 </html>

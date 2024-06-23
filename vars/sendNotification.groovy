@@ -29,7 +29,7 @@ def call(script, String buildStatus = 'STARTED', String recipient, String projec
   //   colorCode = '#FF0000'
   // }
 
-variables = [ PIPELINE_STATUS: buildStatus,
+variables = [ pipelineStatus: buildStatus,
               PIPELINE_URL: script.env.BUILD_URL,
               COMMIT_AUTHOR: script.env.CHANGE_AUTHOR,
               COMMIT_NAME: script.env.GIT_COMMIT,
