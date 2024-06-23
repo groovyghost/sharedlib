@@ -5,7 +5,7 @@ def renderTemplate(input, variables) {
   return engine.createTemplate(input).make(variables).toString()
 }
 
-def call(script, String buildStatus = 'STARTED', String recipient) {
+def call(script, String buildStatus = 'STARTED', String recipient, String project_name) {
   // build status of null means successful
   buildStatus = buildStatus ?: 'SUCCESS'
 
@@ -34,7 +34,7 @@ variables = [ PIPELINE_STATUS: script.currentBuild.result,
               COMMIT_AUTHOR: script.env.CHANGE_AUTHOR,
               COMMIT_NAME: script.env.GIT_COMMIT,
               BRANCH_NAME: script.env.BRANCH_NAME,
-              PROJECT_NAME: Constant.PROJECT_NAME,
+              PROJECT_NAME: project_name,
               BUILD_NUMBER: script.env.BUILD_NUMBER
 ]
 template = script.libraryResource('templates/email.html.groovy')
