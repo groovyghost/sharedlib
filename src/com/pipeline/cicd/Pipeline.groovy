@@ -1,9 +1,10 @@
 package com.pipeline.cicd
 
-import com.pipeline.cicd.Constant
-import com.pipeline.cicd.helpers.JenkinsHelper
-import com.pipeline.cicd.stages.*
 import org.jenkinsci.plugins.workflow.cps.DSL
+import com.pipeline.cicd.helpers.JenkinsHelper
+import com.pipeline.cicd.helpers.Exception
+import com.pipeline.cicd.Constant
+import com.pipeline.cicd.stages.*
 
 class Pipeline implements Serializable {
 
@@ -35,6 +36,7 @@ class Pipeline implements Serializable {
         pipeline.withPreparationStage()
         if (script.env.BRANCH_NAME.toLowerCase() == "staging") {
             Constant.NODE = "agent2"
+            script.echo "Running on ${script.env.BRANCH_NAME}"
             pipeline.withCleanupStage()
         }
         return pipeline
