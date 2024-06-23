@@ -24,12 +24,12 @@ def call(script,buildStatus, emailRecipients) {
 
         def icon = "✅"
         def statusSuccess = true
-        def hasArtifacts = false
+        // def hasArtifacts = false
 
         if(buildStatus != "SUCCESS") {
             icon = "❌"
             statusSuccess = false
-            hasArtifacts = false
+            // hasArtifacts = false
         }
 
         def body = emailTemplate([
