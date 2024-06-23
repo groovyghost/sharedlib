@@ -29,13 +29,13 @@ def call(script, String buildStatus = 'STARTED', String recipient) {
   //   colorCode = '#FF0000'
   // }
 
-variables = [ PIPELINE_STATUS: ${script.currentBuild.result},
-              PIPELINE_URL: ${script.env.BUILD_URL},
-              COMMIT_AUTHOR: ${script.env.CHANGE_AUTHOR},
-              COMMIT_NAME: ${script.env.GIT_COMMIT},
-              BRANCH_NAME: ${script.env.BRANCH_NAME},
-              PROJECT_NAME: ${Constant.PROJECT_NAME},
-              BUILD_NUMBER: ${script.env.BUILD_NUMBER}
+variables = [ PIPELINE_STATUS: script.currentBuild.result,
+              PIPELINE_URL: script.env.BUILD_URL,
+              COMMIT_AUTHOR: script.env.CHANGE_AUTHOR,
+              COMMIT_NAME: script.env.GIT_COMMIT,
+              BRANCH_NAME: script.env.BRANCH_NAME,
+              PROJECT_NAME: Constant.PROJECT_NAME,
+              BUILD_NUMBER: script.env.BUILD_NUMBER
 ]
 template = script.libraryResource('templates/email.html.groovy')
 report = renderTemplate(template, variables)
