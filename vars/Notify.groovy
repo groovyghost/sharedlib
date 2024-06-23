@@ -22,6 +22,7 @@ def emailTemplate(params) {
  * @param emailRecipients Array with emails: emailRecipients = []
  */
 def call(script,buildStatus, emailRecipients) {
+  buildStatus = buildStatus ?: 'SUCCESS'
 
     try {
 
