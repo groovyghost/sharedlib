@@ -9,31 +9,6 @@
 
 <body style="margin: 0; padding: 0;">
   <table logopacing="0" style="width: 90%;border-collapse: collapse;">
-    <thead style="background-color: #FFFFFF;">
-      <tr>
-        <td colspan="7" style="height: 32px;"></td>
-      </tr>
-      <tr>
-        <td rowspan="2" colspan="1" style="padding-left: 10px;"></td>
-        <td rowspan="2" colspan="2" style="padding: 0 0 10px 0;width: 156px;text-align: center;">
-          <img alt="logo" src="https://raw.githubusercontent.com/abitrian/mailing-jenkins/master/img/logo.png">
-        </td>
-        <td colspan="3" style="font-family: Lato-Bold, Helvetica; font-size: 12px; color: #343B49; letter-spacing: 2px; line-height: 16px; text-transform: uppercase;">
-          logo Workflow Tool
-        </td>
-      </tr>
-      <tr>
-        <td colspan="4" style="display:inline;letter-spacing:1px;font-weight:700;font-size:24px;line-height:30px;font-family:Lato-Bold,Helvetica;padding-right:24px">
-          ${statusSuccess ? 'The job is done' : "The job couldn't be done"}
-        </td>
-      </tr>
-      <tr>
-        <td colspan="1" style="height: 10px; width: 30px"></td>
-        <td colspan="2" style="height: 10px;"></td>
-        <td colspan="3" style="height: 10px;"></td>
-        <td colspan="1" style="height: 10px; width: 100px"></td>
-      </tr>
-    </thead>
     <tbody style="background-color: #F4F4F4;">
       <tr>
         <td colspan="1"></td>
@@ -45,7 +20,7 @@
       <tr>
         <td rowspan="3" colspan="1"></td>
         <td rowspan="3" colspan="2" style="text-align: center;">
-          <img alt="jenkins" src="https://raw.githubusercontent.com/abitrian/mailing-jenkins/master/img/jenkins.png">
+          <img alt="jenkins" src="${statusSuccess ? 'https://raw.githubusercontent.com/groovyghost/sharedlib/master/img/jenkins-success.svg' : 'https://raw.githubusercontent.com/groovyghost/sharedlib/master/img/jenkins-failed.svg'}">
         </td>
         <td colspan="2" style="vertical-align: bottom;font-family: Georgia; font-weight: bold; font-size: 16px; color: #343B49; letter-spacing: 1px; line-height: 16px;">
           Jenkins
@@ -77,8 +52,8 @@
       <tr>
         <td colspan="7" style="height: 32px;"></td>
       </tr>
-      <!--TABLE2-->
-      <tr style="background-color: #FFFFFF;${ hasArtifacts ? '' : 'display: none;' }">
+      <!--TABLE2 to-do for artifacts-->
+      <!-- <tr style="background-color: #FFFFFF;${ hasArtifacts ? '' : 'display: none;' }">
         <td rowspan="2" colspan="1" style="background-color: #F4F4F4;"></td>
         <td rowspan="2" colspan="2" style="padding-left: 24px;text-align: center;">
           <img alt="files" src="https://raw.githubusercontent.com/abitrian/mailing-jenkins/master/img/download-files.png">
@@ -105,31 +80,22 @@
       </tr>
       <tr style="${ hasArtifacts ? '' : 'display: none;' }">
         <td colspan="7" style="height: 32px; border-bottom: solid #F4F4F4 1px;"></td>
-      </tr>
+      </tr> -->
       <!--TABLE2-->
     </tbody>
     <tfoot style="background-color: #F4F4F4;">
       <tr>
         <td colspan="2"></td>
-        <td colspan="5" style="font-family: Lato-Bold, Helvetica; font-size: 10px; color: #AEAEAE; letter-spacing: 2px; line-height: 16px; margin-bottom: 0; text-transform: uppercase;">
-          Provided by logo
-        </td>
       </tr>
       <tr>
         <td colspan="2"></td>
         <td colspan="1" style="font-family: Lato-Light, Helvetica; color: #AEAEAE; letter-spacing: 1px; font-weight: normal; font-size: 12px; line-height: 20px; margin: 8px 0;">
-          A <strong style="font-family: Lato-Bold, Helvetica; color: #343B49;">Medium</strong> Engine
+          By <strong style="font-family: Lato-Bold, Helvetica; color: #343B49;">Cloud Devops Team</strong>
         </td>
         <td colspan="4" style="text-align: right;padding-right: 67px;">
           <ul style="list-style-type: none; margin: 0; padding: 0;">
-            <li style="display: inline; letter-spacing: 1px; font-weight: 700; font-size: 12px; line-height: 20px; font-family: Lato-Bold, Helvetica; padding-right: 24px;">
-              <a href="" style="text-decoration: none; color: #343B49;">More</a>
-            </li>
-            <li style="display: inline; letter-spacing: 1px; font-weight: 700; font-size: 12px; line-height: 20px; font-family: Lato-Bold, Helvetica; padding-right: 24px;">
-              <a href="" style="text-decoration: none; color: #343B49;">Support</a>
-            </li>
             <li style="display: inline; letter-spacing: 1px; font-weight: 700; font-size: 12px; line-height: 20px; font-family: Lato-Bold, Helvetica;">
-              <a href="" style="text-decoration: none; color: #343B49;">Contact</a>
+              <a href="mailto:rahul.a@contus.in" style="text-decoration: none; color: #343B49;">Contact</a>
             </li>
           </ul>
         </td>

@@ -24,7 +24,7 @@ def call(script,buildStatus, emailRecipients) {
 
         def icon = "✅"
         def statusSuccess = true
-        def hasArtifacts = true
+        def hasArtifacts = false
 
         if(buildStatus != "SUCCESS") {
             icon = "❌"
@@ -36,13 +36,13 @@ def call(script,buildStatus, emailRecipients) {
             "jenkinsText"   :   script.env.JOB_NAME,
             "jenkinsUrl"    :   script.env.BUILD_URL,
             "statusSuccess" :   statusSuccess,
-            "hasArtifacts"  :   hasArtifacts,
-            "downloadUrl"   :   "www.downloadurl.com"
+            // "hasArtifacts"  :   hasArtifacts,
+            // "downloadUrl"   :   "www.downloadurl.com"
         ]);
 
         script.emailext(
             to: emailRecipients,
-            subject: "${icon} [ ${script.env.JOB_NAME} ] [${script.env.BUILD_NUMBER}] - ${buildStatus} ",
+            subject: "${icon} [ ${script.env.JOB_NAME} ] [ Build - ${script.env.BUILD_NUMBER} ] - ${buildStatus} ",
             body: body,
             mimeType: 'text/html',
             recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']] )
