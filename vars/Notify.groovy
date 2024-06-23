@@ -29,7 +29,7 @@ def call(script,buildStatus, emailRecipients) {
         def statusSuccess = true
         def hasArtifacts = false
 
-        if(buildStatus != "SUCCESSFUL") {
+        if(buildStatus != "SUCCESS") {
             icon = "❌"
             statusSuccess = false
             hasArtifacts = false
