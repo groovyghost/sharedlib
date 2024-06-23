@@ -35,7 +35,7 @@ variables = [ subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUI
               content: "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} succeeded.",
               buildUrl: script.env.BUILD_URL
 ]
-template = script.libraryResource('email_template.html.groovy')
+template = script.libraryResource('templates/email_template.html.groovy')
 report = renderTemplate(template, variables)
   script.emailext (
       to: recipient,

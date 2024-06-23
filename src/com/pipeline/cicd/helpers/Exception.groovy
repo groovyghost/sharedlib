@@ -11,7 +11,6 @@ class Exception implements Serializable {
     void handle(def err) {
         script.currentBuild.result = "FAILURE"
         script.error "Build failed: ${err.toString()}"
-    
     }
 
 }
