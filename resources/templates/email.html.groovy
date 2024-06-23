@@ -30,10 +30,7 @@
             <tr>
               <td width="64px" height="142px">
                 <a href="${jenkinsUrl}" style="text-decoration: none;border-radius: 50%;background-color: #ffffff;display: inline-block;height: 72px;width: 72px;line-height: 76px;text-align: center">
-                  <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 12H20" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14 6L20 12L14 18" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                  <img src="https://raw.githubusercontent.com/groovyghost/sharedlib/master/img/arrow.png">
                 </a>
               </td>
             </tr>
