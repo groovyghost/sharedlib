@@ -1,3 +1,5 @@
+import groovy.text.StreamingTemplateEngine
+
 def call(script, String buildStatus = 'STARTED', String recipient) {
   // build status of null means successful
   buildStatus = buildStatus ?: 'SUCCESS'
@@ -21,7 +23,10 @@ def call(script, String buildStatus = 'STARTED', String recipient) {
     color = 'RED'
     colorCode = '#FF0000'
   }
-
+def renderTemplate(input, variables) {
+  def engine = new StreamingTemplateEngine()
+  return engine.createTemplate(input).make(variables).toString()
+}
 variables = [ subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
               jobName: script.env.JOB_NAME,
               buildNumber: script.env.BUILD_NUMBER,
@@ -29,7 +34,7 @@ variables = [ subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUI
               buildUrl: script.env.BUILD_URL
 ]
 template = script.libraryResource('email_template.html.groovy')
-report = JenkinsHelper.renderTemplate(template, variables)
+report = renderTemplate(template, variables)
   script.emailext (
       to: recipient,
       subject: subject,
