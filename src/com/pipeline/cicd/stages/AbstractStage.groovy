@@ -2,6 +2,9 @@ package com.pipeline.cicd.stages
 
 import com.pipeline.cicd.helpers.JenkinsHelper
 
+/**
+ * Abstract class representing a stage in the pipeline.
+ */
 abstract class AbstractStage implements Stage {
 
     def stageName

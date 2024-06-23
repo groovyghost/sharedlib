@@ -2,20 +2,23 @@ package com.pipeline.cicd.helpers
 
 import com.pipeline.cicd.Constant
 
+/**
+ * Helper class for reading and parsing build properties.
+ */
 class BuildProperties implements Serializable {
 
     def script
+
+    // File path for build properties file
     def BUILD_PROP_FILEPATH = "build.properties"
 
     BuildProperties(Object script) {
         this.script = script
     }
 
-     def parseJSON(def json) {
-         new groovy.json.JsonSlurperClassic().parseText(json)
-    }
-
-
+    /**
+     * Reads build properties from a file and sets the service name constant.
+     */
     void readBuildProperties() {
         def buildProperties = script.readFile encoding: 'UTF-8', file: "${BUILD_PROP_FILEPATH}"
 
@@ -25,6 +28,5 @@ class BuildProperties implements Serializable {
         Constant.SERVICE_NAME = propBuild.getProperty("build.service.name")
         Constant.SERVICE_NAME = propBuild.getProperty("build.service.name")
     }
-
 }
 
