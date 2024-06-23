@@ -9,33 +9,35 @@ def call(script, String buildStatus = 'STARTED', String recipient) {
   // build status of null means successful
   buildStatus = buildStatus ?: 'SUCCESS'
 
-  // Default values
-  def colorName = 'RED'
-  def colorCode = '#FF0000'
+  // // Default values
+  // def colorName = 'RED'
+  // def colorCode = '#FF0000'
   def subject = "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}"
-  def summary = "${subject} (${env.BUILD_URL})"
-  def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
+  // def summary = "${subject} (${env.BUILD_URL})"
+  // def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+  //   <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
 
-  // Override default values based on build status
-  if (buildStatus == 'STARTED') {
-    color = 'YELLOW'
-    colorCode = '#FFFF00'
-  } else if (buildStatus == 'SUCCESS') {
-    color = 'GREEN'
-    colorCode = '#00FF00'
-  } else {
-    color = 'RED'
-    colorCode = '#FF0000'
-  }
+  // // Override default values based on build status
+  // if (buildStatus == 'STARTED') {
+  //   color = 'YELLOW'
+  //   colorCode = '#FFFF00'
+  // } else if (buildStatus == 'SUCCESS') {
+  //   color = 'GREEN'
+  //   colorCode = '#00FF00'
+  // } else {
+  //   color = 'RED'
+  //   colorCode = '#FF0000'
+  // }
 
-variables = [ subject: "Pipeline Failed: ${script.env.JOB_NAME} ${script.env.BUILD_NUMBER}",
-              jobName: script.env.JOB_NAME,
-              buildNumber: script.env.BUILD_NUMBER,
-              content: "Pipeline ${script.env.JOB_NAME} build ${script.env.BUILD_NUMBER} succeeded.",
-              buildUrl: script.env.BUILD_URL
+variables = [ PIPELINE_STATUS: ${script.currentBuild.result},
+              PIPELINE_URL: ${script.env.BUILD_URL},
+              COMMIT_AUTHOR: ${script.env.CHANGE_AUTHOR},
+              COMMIT_NAME: ${script.env.GIT_COMMIT},
+              BRANCH_NAME: ${script.env.BRANCH_NAME},
+              PROJECT_NAME: ${Constant.PROJECT_NAME},
+              BUILD_NUMBER: ${script.env.BUILD_NUMBER}
 ]
-template = script.libraryResource('templates/email_template.html.groovy')
+template = script.libraryResource('templates/email.html.groovy')
 report = renderTemplate(template, variables)
   script.emailext (
       to: recipient,
